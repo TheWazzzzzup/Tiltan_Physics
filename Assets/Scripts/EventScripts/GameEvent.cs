@@ -7,8 +7,6 @@ public class GameEvent : ScriptableObject
 {
     public List<GameEventListener> listeners = new();
 
-    // Rasie event through different methods signatures
-
     public void Raise()
     {
         for (int i = 0; i < listeners.Count; i++)

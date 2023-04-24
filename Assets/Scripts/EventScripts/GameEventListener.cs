@@ -12,7 +12,7 @@ public class GameEventListener : MonoBehaviour
 
     private void OnEnable()
     {
-        gameEvent.ResiterListener(this);
+        gameEvent.ResiterListener(this); 
     }
 
     private void OnDisable()
