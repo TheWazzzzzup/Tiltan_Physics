@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour
+public class TurnManager
 {
-    public TurnTakerSet playerSet;
+    TurnTakerSet playerSet;
+    int index;
 
-    int index = 0;
-
-    private void Start()
+    public TurnManager(TurnTakerSet turnTakerSet)
     {
-        TurnHandler();
+        playerSet = turnTakerSet;
+        index = 0;
     }
 
     [ContextMenu("Pass Turn")]
     public void PassTurn()
     {
         TurnPasser();
+    }
+
+    public TurnTaker GetCurrentPlayer()
+    {
+        return playerSet.GetListMember(index);
     }
     
     void TurnPasser()
@@ -29,7 +34,7 @@ public class TurnManager : MonoBehaviour
         TurnHandler();
     }
     
-    void TurnHandler()
+    public void TurnHandler()
     {
         switch (index)
         {

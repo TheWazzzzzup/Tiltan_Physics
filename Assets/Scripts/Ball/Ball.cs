@@ -4,30 +4,31 @@ using UnityEngine;
 
 public class Ball
 {
-    int orderNum;
 
-    BallType myType = BallType.Unassgined;
-    BallStatus myStatus = BallStatus.Unpotted;
+    public BallType MyType { get; private set;} = BallType.Unassgined;
+    public BallStatus MyStatus { get; private set; } = BallStatus.Unpotted;
+
+    int orderNum;
 
     public Ball(int num)
     {
         orderNum = num;
 
-        if (orderNum < 8) myType = BallType.Filled;
-        if (orderNum == 8) myType = BallType.Black;
-        if (orderNum > 8) myType = BallType.Striped;
+        if (orderNum < 8) MyType = BallType.Filled;
+        if (orderNum == 8) MyType = BallType.Black;
+        if (orderNum > 8) MyType = BallType.Striped;
         if (orderNum > 15)
         {
             Debug.Log("You created more than 15 balls, this extra ball was overTheTop");
-            myType = BallType.OverTheTop;
+            MyType = BallType.OverTheTop;
         }
     }
 
-    public BallType GetBallType()
+    public void ChangeBallStatus(BallStatus toStatus)
     {
-        return myType;
+        MyStatus = toStatus;
     }
-    
+
 }
 
 public enum BallStatus

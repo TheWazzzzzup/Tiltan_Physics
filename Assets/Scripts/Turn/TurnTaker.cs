@@ -24,6 +24,10 @@ public class TurnTaker : MonoBehaviour
     public void EndTurn() => myTurn = false;
 
 
+
+    // Needs to be changed from fixed update asap!
+
+    // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
     private void FixedUpdate()
     {
         if (ren != null)
@@ -32,5 +36,5 @@ public class TurnTaker : MonoBehaviour
             else ren.material.color = Color.gray;
         }
     }
-
+    // ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 }
