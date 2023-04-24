@@ -52,6 +52,37 @@ public class GameManager : MonoBehaviour
     }
 
 
+    void PlayTurnCompute()
+    {
+        switch (myStage)
+        {
+            case GameStage.Rack:
+
+                break;
+            case GameStage.BallPot:
+
+                break;
+            case GameStage.BlackBall:
+
+                break;
+        }
+    }
+
+    void RackPlayTurn()
+    {
+
+    }
+
+    void BallPotPlayTurn()
+    {
+
+    }
+
+    void BlackBallPlayTurn()
+    {
+
+    }
+
     private void Update()
     {
         // Debug Turn Changer
