@@ -8,14 +8,11 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Events")]
     [SerializeField] GameEvent onUpdateUI;
-    // called when player set to start his turn
-    [SerializeField] GameEvent onPlayTurn;
-    // called when player hits the ball
-    [SerializeField] GameEvent onBallHit;
-    // called when player hits the ball but foul
-    [SerializeField] GameEvent onFoulAfterHit;
-    // called when striker foul on the begging
-    [SerializeField] GameEvent onStrikerFoul;
+
+    [SerializeField] GameEvent onSuccessfulRack;
+    [SerializeField] GameEvent onUnsuccessfulRack;
+
+
     [Space]
 
     [Header("Turn Manager")]
@@ -51,7 +48,8 @@ public class GameManager : MonoBehaviour
             currentPlayerInfo.text = turnManager.GetCurrentPlayer().name.ToString();
         }
 
-        onUpdateUI.Raise();
+        if (onUpdateUI != null) onUpdateUI.Raise();
+        else Debug.LogWarning("onUpdateUI Event cannot be found");
     }
 
 
@@ -60,19 +58,34 @@ public class GameManager : MonoBehaviour
         switch (myStage)
         {
             case GameStage.Rack:
-
+                RackPlayTurn();
                 break;
             case GameStage.BallPot:
-
+                BallPotPlayTurn();
                 break;
             case GameStage.BlackBall:
-
+                BlackBallPlayTurn();
                 break;
         }
+        onUpdateUI.Raise();
     }
 
     void RackPlayTurn()
     {
+        int rackChance = Random.Range(0, 6);
+
+        // Succsessful Rack
+        if (rackChance > 0)
+        {
+            onSuccessfulRack.Raise();
+        }
+
+
+        // Unsucssesful Rack
+        if (rackChance == 0)
+        {
+            onUnsuccessfulRack.Raise();
+        }
 
     }
 
