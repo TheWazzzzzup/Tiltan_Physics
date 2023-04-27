@@ -39,6 +39,9 @@ public class BallManager
 
     public void BallSorter()
     {
+        NumberOfFilled = 0;
+        NumberOfStripes = 0;
+        BlackBallOnDeck = false;
         foreach(var ball in balls)
         {
             switch (ball.MyType)
