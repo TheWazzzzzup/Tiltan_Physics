@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameEvent onSuccessfulRack;
     [SerializeField] GameEvent onUnsuccessfulRack;
+
+    
     [Space]
 
     [Header("Turn Manager")]
@@ -58,6 +60,9 @@ public class GameManager : MonoBehaviour
             case GameStage.Rack:
                 RackPlayTurn();
                 break;
+            case GameStage.BallDesignation:
+                BallDesignationPhase();
+                break;
             case GameStage.BallPot:
                 BallPotPlayTurn();
                 break;
@@ -87,9 +92,78 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void BallDesignationPhase()
+    {
+        int leagalPlay = Random.Range(0, 10);
+        int potBall = Random.Range(0, 4);
+        bool isPlayLegal = leagalPlay > 0;
+        bool didPottedBall = potBall == 0;
+
+        if (isPlayLegal && didPottedBall)
+        {
+            int rndBallType = Random.Range(0, 2);
+
+            switch (rndBallType)
+            {
+                // fill
+                case 0:
+                    turnManager.GetCurrentPlayer().SetDesigntedBallType(BallType.Filled);
+                    turnManager.GetOppenent().SetDesigntedBallType(BallType.Striped);
+                    ballManager.ChangeBallNumber(BallType.Filled, 1);
+                    break;
+                // strip
+                case 1:
+                    turnManager.GetCurrentPlayer().SetDesigntedBallType(BallType.Striped);
+                    turnManager.GetOppenent().SetDesigntedBallType(BallType.Filled);
+                    ballManager.ChangeBallNumber(BallType.Striped, 1);
+                    break;
+            }
+            onUpdateUI.Raise();
+        }
+        if (isPlayLegal && !didPottedBall)
+        {
+            myStage = GameStage.BallPot;
+            turnManager.PassTurn();
+        }
+        if (!isPlayLegal)
+        {
+            turnManager.PassTurn();
+        }
+    }
+
     void BallPotPlayTurn()
     {
+        int leagalPlay = Random.Range(0, 10);
+        int potBall = Random.Range(0, 4);
+        bool isPlayLegal = leagalPlay > 0;
+        bool didPottedBall = potBall == 0;
 
+        if (isPlayLegal && didPottedBall)
+        {
+            var playerBallType = turnManager.GetCurrentPlayer().myDesigntedBallType;
+            if (playerBallType != null)
+            {
+                ballManager.ChangeBallNumber(playerBallType.Value, 1);
+                turnManager.PassTurn();
+            }
+
+            if (ballManager.NumberOfStripes == 0 || ballManager.NumberOfFilled == 0)
+            {
+                myStage = GameStage.BlackBall;
+            }
+            onUpdateUI.Raise();
+        }
+        
+        if (isPlayLegal && !didPottedBall)
+        {
+            turnManager.PassTurn();
+        }
+
+        if (!isPlayLegal)
+        {
+            // need to add foul logic !
+            turnManager.PassTurn();
+        }
     }
 
     void BlackBallPlayTurn()
@@ -101,7 +175,7 @@ public class GameManager : MonoBehaviour
     public void SuccsessfulRack()
     {
         Debug.Log("Rack succsessful");
-        myStage = GameStage.BallPot;
+        myStage = GameStage.BallDesignation;
         turnManager.PassTurn();
     }
 
@@ -111,9 +185,8 @@ public class GameManager : MonoBehaviour
         var currentPlayer = turnManager.GetCurrentPlayer();
         if (currentPlayer != null)
         {
-            if (currentPlayer.qualfiedForRerack)
+            if (currentPlayer.CanRerackBalls())
             {
-                currentPlayer.SetRerackQualification(false);
                 RackPlayTurn();
             }
             else
@@ -149,6 +222,7 @@ public class GameManager : MonoBehaviour
 public enum GameStage
 {
     Rack,
+    BallDesignation,
     BallPot,
     BlackBall
 }

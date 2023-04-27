@@ -28,7 +28,18 @@ public class TurnTaker : MonoBehaviour
 
     public void SetDesigntedBallType(BallType deigntedType) => myDesigntedBallType = deigntedType;
 
-    public void SetRerackQualification(bool isAllowed) => qualfiedForRerack = isAllowed;
+    public bool CanRerackBalls()
+    {
+        if (qualfiedForRerack)
+        {
+            qualfiedForRerack = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     // ?Maybe add an TurnChangedEvent?
     // Needs to be changed from fixed update asap!
