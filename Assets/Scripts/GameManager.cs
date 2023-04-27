@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [Header("Game Events")]
+    [SerializeField] GameEvent onUpdateUI;
     // called when player set to start his turn
     [SerializeField] GameEvent onPlayTurn;
     // called when player hits the ball
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
         {
             currentPlayerInfo.text = turnManager.GetCurrentPlayer().name.ToString();
         }
+
+        onUpdateUI.Raise();
     }
 
 
@@ -83,15 +86,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        // Debug Turn Changer
-        if (Input.GetKeyDown(KeyCode.F) == true)
-        {
-            turnManager.PassTurn();
-            UpdateUI();
-        }
-    }
 
     [ContextMenu("Refresh")]
     public void UpdateUI()
@@ -119,3 +113,16 @@ public enum GameStage
     BallPot,
     BlackBall
 }
+
+    #region TurnpassWithUpdate
+    // nts: not the best use (to say the least) preformence wise
+    //private void Update()
+    //{
+    //    // Debug Turn Changer
+    //    if (Input.GetKeyDown(KeyCode.F) == true)
+    //    {
+    //        turnManager.PassTurn();
+    //        onUpdateUI.Raise();
+    //    }
+    //}
+    #endregion 
