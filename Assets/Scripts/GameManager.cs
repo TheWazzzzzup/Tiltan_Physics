@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameEvent onSuccessfulRack;
     [SerializeField] GameEvent onUnsuccessfulRack;
-
-
     [Space]
 
     [Header("Turn Manager")]
@@ -53,7 +51,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void PlayTurnCompute()
+    public void PlayTurnCompute()
     {
         switch (myStage)
         {
@@ -100,7 +98,35 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [ContextMenu("Refresh")]
+    public void SuccsessfulRack()
+    {
+        Debug.Log("Rack succsessful");
+        myStage = GameStage.BallPot;
+        turnManager.PassTurn();
+    }
+
+    public void UnsuccsessfulRack()
+    {
+        Debug.Log("Rack unsuccsessful");
+        var currentPlayer = turnManager.GetCurrentPlayer();
+        if (currentPlayer != null)
+        {
+            if (currentPlayer.qualfiedForRerack)
+            {
+                currentPlayer.SetRerackQualification(false);
+                RackPlayTurn();
+            }
+            else
+            {
+                turnManager.PassTurn();
+            }
+        }
+        else 
+        {
+            Debug.LogWarning("current Player Is Null");
+        }
+    }
+
     public void UpdateUI()
     {
         ballManager.BallSorter();

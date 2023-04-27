@@ -9,9 +9,7 @@ public class TurnTaker : MonoBehaviour
 
     bool myTurn = false;
 
-    bool qualfiedForRerack = true;
-
-
+    public bool qualfiedForRerack { get; private set; } = true;
 
     Color intendetColor;
     Renderer ren;
@@ -28,12 +26,9 @@ public class TurnTaker : MonoBehaviour
     public void StartTurn() => myTurn = true;
     public void EndTurn() => myTurn = false;
 
-    public void SetDesigntedBallType(BallType deigntedType)
-    {
-        myDesigntedBallType = deigntedType;
-    }
+    public void SetDesigntedBallType(BallType deigntedType) => myDesigntedBallType = deigntedType;
 
-
+    public void SetRerackQualification(bool isAllowed) => qualfiedForRerack = isAllowed;
 
     // ?Maybe add an TurnChangedEvent?
     // Needs to be changed from fixed update asap!

@@ -23,6 +23,16 @@ public class TurnManager
     {
         return playerSet.GetListMember(index);
     }
+
+    public TurnTaker GetOppenent()
+    {
+        int currentPlayer = index;
+        if (index + 1 < playerSet.GetList().Count)
+        {
+            return playerSet.GetListMember(currentPlayer++);
+        }
+        else return playerSet.GetListMember(0);
+    }
     
     void TurnPasser()
     {

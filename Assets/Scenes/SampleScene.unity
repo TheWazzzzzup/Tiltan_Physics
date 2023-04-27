@@ -1750,6 +1750,9 @@ GameObject:
   - component: {fileID: 1780594195}
   - component: {fileID: 1780594194}
   - component: {fileID: 1780594196}
+  - component: {fileID: 1780594197}
+  - component: {fileID: 1780594198}
+  - component: {fileID: 1780594199}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1770,10 +1773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onUpdateUI: {fileID: 11400000, guid: 59ab09fba19aec44e99e1ac4a63dda9f, type: 2}
-  onPlayTurn: {fileID: 11400000, guid: 6deeaf99887dc4b4eb8f4c961ec11d01, type: 2}
-  onBallHit: {fileID: 11400000, guid: d1dba7d76d600a540ad10a4853fa7c0a, type: 2}
-  onFoulAfterHit: {fileID: 11400000, guid: c40a7f9ba7533244097a4a50baf828dc, type: 2}
-  onStrikerFoul: {fileID: 11400000, guid: 8e7fe7dea4a04a145845f2f839292923, type: 2}
+  onSuccessfulRack: {fileID: 11400000, guid: a294c4e82cc76754cb2e01790870674e, type: 2}
+  onUnsuccessfulRack: {fileID: 11400000, guid: 40b12f3b6b66b8e40b8b603d412b8246, type: 2}
   turnTakerSet: {fileID: 11400000, guid: 92ec6743b991cd141846b1a52e99602f, type: 2}
   currentPlayerInfo: {fileID: 2144691901}
   currentStripeInfo: {fileID: 1780294122}
@@ -1812,6 +1813,90 @@ MonoBehaviour:
       - m_Target: {fileID: 1780594194}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: UpdateUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1780594197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780594193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271caf6c2512904980532394fc8b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a294c4e82cc76754cb2e01790870674e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1780594194}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SuccsessfulRack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1780594198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780594193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271caf6c2512904980532394fc8b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 40b12f3b6b66b8e40b8b603d412b8246, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1780594194}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: UnsuccsessfulRack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1780594199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780594193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271caf6c2512904980532394fc8b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6deeaf99887dc4b4eb8f4c961ec11d01, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1780594194}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PlayTurnCompute
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
