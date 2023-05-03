@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class TrajectoryBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+    [SerializeField] float xThrowIntensity;
+    [SerializeField] float yGravityIntensity;
+
+    Transform objectTransform;
+
+    uint timeLocOnScale;
+
+    private void Start()
     {
-        
+        objectTransform = GetComponent<Transform>();
+
+        if (objectTransform == null) Debug.LogWarning("Cant Find Transform");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        timeLocOnScale ++;
+        if (objectTransform != null)
+        {
+            Vector3 dest = ZeroDragTranslate(xThrowIntensity,yGravityIntensity);
+            objectTransform.transform.Translate(dest);
+        }
+    }
+
+    Vector3 ZeroDragTranslate(float xSpeed, float ySpeed)
+    {
+        float x, y, z;
+
+        x = xSpeed * timeLocOnScale;
+        z = 0;
+
+        // y 
+        y = (-yGravityIntensity / Mathf.Pow(2 * x, 2)) * Mathf.Pow(x, 2);
+
+        Vector3 NewForce = new Vector3(x, y, z);
+
+        return NewForce;
     }
 }
