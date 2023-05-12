@@ -5,16 +5,32 @@ using UnityEngine;
 public class VelocityAddition : MonoBehaviour
 {
     Rigidbody2D rb;
+
+    bool changeVel = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    [ContextMenu("VelcityAdd")]
+    private void FixedUpdate()
+    {
+        if (changeVel)
+        {
+            AddVel();
+        }
+    }
+
+    [ContextMenu("Change")]
+    public void ChangeVel()
+    {
+        changeVel = true;
+    }
+
     public void AddVel()
     {
-        rb.velocity = Vector2.right * 2;
+        rb.velocity = Vector2.right * 7.5f;
+        changeVel = false;
     }
 
     [ContextMenu("StopVel")]
