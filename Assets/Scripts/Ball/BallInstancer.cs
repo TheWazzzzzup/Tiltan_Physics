@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// Monobehavior implementation of the ball manager
@@ -26,6 +27,10 @@ public class BallInstancer : MonoBehaviour
     [SerializeField] private GameObject stripeBallNumFive;
     [SerializeField] private GameObject stripeBallNumSix;
     [SerializeField] private GameObject stripeBallNumSeven;
+    [Space]
+    [Header("TMP")]
+    [SerializeField] private TextMeshProUGUI FilledText;
+    [SerializeField] private TextMeshProUGUI StripeText;
     [Space]
 
     [SerializeField] Transform triangleStartingTransform;
