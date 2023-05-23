@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallManager
 {
-    Ball[] balls;
+    public Ball[] balls { get; private set; }
 
     public int NumberOfStripes { get; private set; }
     public int NumberOfFilled { get; private set; }

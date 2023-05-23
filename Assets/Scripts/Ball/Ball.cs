@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Ball
 {
-
     public BallType MyType { get; private set;} = BallType.Unassgined;
     public BallStatus MyStatus { get; private set; } = BallStatus.Unpotted;
 
