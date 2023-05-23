@@ -28,13 +28,10 @@ public class BallInstancer : MonoBehaviour
     [SerializeField] private GameObject stripeBallNumSix;
     [SerializeField] private GameObject stripeBallNumSeven;
     [Space]
-    [Header("TMP")]
-    [SerializeField] private TextMeshProUGUI FilledText;
-    [SerializeField] private TextMeshProUGUI StripeText;
-    [Space]
 
     [SerializeField] Transform triangleStartingTransform;
     [SerializeField] Transform whiteStatingTransform;
+
 
     GameObject ball;
 
@@ -42,17 +39,18 @@ public class BallInstancer : MonoBehaviour
 
     float  instanceOffsetY = 1.1f;
     float instanceOffsetX = 1.8f;
-    
-    private void Start()
+
+    public void InjectBallManager(BallManager ballManager)
     {
-        ballManager = new (15);
+        if (ballManager != null)
+        {
+            this.ballManager = ballManager;
 
-        Instantiate(whiteBall, whiteStatingTransform);
+            Instantiate(whiteBall, whiteStatingTransform);
 
-        InstanceBalls();
+            InstanceBalls();
+        }
     }
-
-
 
     void InstanceBalls()
     {
