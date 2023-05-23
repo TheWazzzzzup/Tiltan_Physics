@@ -33,7 +33,7 @@ public class BallInstancer : MonoBehaviour
 
     GameObject ball;
 
-    BallManager ballManager;                     // * Maybe inherht form ball manager in the furure *
+    BallManager ballManager;                               // * Maybe inherht form ball manager in the furure *
 
     float  instanceOffsetY = 1.1f;
     float instanceOffsetX = 1.8f;
@@ -87,63 +87,63 @@ public class BallInstancer : MonoBehaviour
         switch(numInOrder)
         {
             case 0:
-                ball = Instantiate(fillBallNumOne, spawnLocation);
+                ball = Instantiate(fillBallNumOne, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 1:
-                ball = Instantiate(fillBallNumTwo, spawnLocation);
+                ball = Instantiate(fillBallNumTwo, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 2:
-                ball = Instantiate(fillBallNumThree, spawnLocation);
+                ball = Instantiate(fillBallNumThree, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 3:
-                ball = Instantiate(fillBallNumFour, spawnLocation);
+                ball = Instantiate(fillBallNumFour, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 4:
-                ball = Instantiate(fillBallNumFive, spawnLocation);
+                ball = Instantiate(fillBallNumFive, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 5:
-                ball = Instantiate(fillBallNumSix, spawnLocation);
+                ball = Instantiate(fillBallNumSix, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 6:
-                ball = Instantiate(fillBallNumSeven, spawnLocation);
+                ball = Instantiate(fillBallNumSeven, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 7:
-                ball = Instantiate(eightBall, spawnLocation);
+                ball = Instantiate(eightBall, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 8:
-                ball = Instantiate(stripeBallNumOne, spawnLocation);
+                ball = Instantiate(stripeBallNumOne, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 9:
-                ball = Instantiate(stripeBallNumTwo, spawnLocation);
+                ball = Instantiate(stripeBallNumTwo, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 10:
-                ball = Instantiate(stripeBallNumThree, spawnLocation);
+                ball = Instantiate(stripeBallNumThree, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 11:
-                ball = Instantiate(stripeBallNumFour, spawnLocation);
+                ball = Instantiate(stripeBallNumFour, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 12:
-                ball = Instantiate(stripeBallNumFive, spawnLocation);
+                ball = Instantiate(stripeBallNumFive, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 13:
-                ball = Instantiate(stripeBallNumSix, spawnLocation);
+                ball = Instantiate(stripeBallNumSix, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             case 14:
-                ball = Instantiate(stripeBallNumSeven, spawnLocation);
+                ball = Instantiate(stripeBallNumSeven, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
                 break;
             default:
