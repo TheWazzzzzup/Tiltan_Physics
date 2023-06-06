@@ -1,19 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class VelocityAddition : MonoBehaviour
 {
-    Rigidbody2D rb2d;
 
+    // Public
+
+
+    // Serialized
     [SerializeField] GameObject stickPrefab;
 
+
+    // Private
+    Rigidbody2D rb2d;
+    StickPlacer stickPlacer;
+
+    Vector2 mouseLocToWorld;
+
+    Vector3 pullAnchorPos;
+
+    float ballToStickAngle;
+    float velocityMultiply = 30f;
+
     bool changeVel = false;
-    // Start is called before the first frame update
+
+    
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        StickInit();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V)) { ChangeVel();  }
+
+        mouseLocToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            stickPlacer.StrikeInitated(true);
+            pullAnchorPos = mouseLocToWorld;
+        }  
+
+        if (Input.GetMouseButtonUp(0) && stickPlacer.CurrentStatus == StickStatus.Striking) {
+            float dist = Vector3.Distance(pullAnchorPos, mouseLocToWorld);
+            velocityMultiply *= dist;
+            ChangeVel();
+
+            
+
+        }
+
+        if (stickPlacer.CurrentStatus == StickStatus.Aiming) {
+            ballToStickAngle = Angle((Vector2)transform.position, mouseLocToWorld);
+            stickPlacer.CueAiming(transform.position, ballToStickAngle);
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -22,18 +69,6 @@ public class VelocityAddition : MonoBehaviour
         {
             AddVel();
         }
-
-        if (rb2d.velocity == Vector2.zero)
-        {
-            TurnEndPicker();
-        }
-    }
-
-     
-    void TurnEndPicker()
-    {
-        // TODO: Add delay for this
-
 
     }
 
@@ -45,19 +80,26 @@ public class VelocityAddition : MonoBehaviour
     // Addes velocity to the script holder game object
     public void AddVel()
     {
-        rb2d.velocity = Vector2.right * 30f;
+        rb2d.velocity = Vector2.right * velocityMultiply;
+        velocityMultiply = 30f;
         changeVel = false;
     }
 
-    [ContextMenu("StopVel")]
-    public void StopVel()
+    // returns the angle for two points
+    float Angle(Vector2 point1, Vector2 point2)
     {
-        rb2d.velocity = Vector2.zero;
+        float angle = Mathf.Atan2(point1.y - point2.y, point1.x - point2.x) * Mathf.Rad2Deg;
+
+        if (angle < 0) angle += 360f;
+        
+        return angle;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StickInit()
     {
-        if (Input.GetKeyDown(KeyCode.V)) { ChangeVel();  }
+        GameObject stickClone = Instantiate(stickPrefab);
+        stickPlacer = stickClone.GetComponent<StickPlacer>();
+        stickPlacer.StartingPosition(transform.position);
     }
 }
