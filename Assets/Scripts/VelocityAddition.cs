@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,7 +7,6 @@ public class VelocityAddition : MonoBehaviour
 {
 
     // Public
-
 
     // Serialized
     [SerializeField] GameObject stickPrefab;
@@ -19,6 +17,8 @@ public class VelocityAddition : MonoBehaviour
     StickPlacer stickPlacer;
 
     Vector2 mouseLocToWorld;
+
+    Vector2 shootingTowards;
 
     Vector3 pullAnchorPos;
 
@@ -42,24 +42,28 @@ public class VelocityAddition : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            stickPlacer.StrikeInitated(true);
+            if (stickPlacer.CurrentStatus == StickStatus.Retreating) return;
+            stickPlacer.ChangeCurrentStatus(StickStatus.Striking);
             pullAnchorPos = mouseLocToWorld;
-        }  
+            shootingTowards = VectorCalculator.CalculateCartesianVector2(stickPlacer.pointingTowards, 1);
+        }
 
         if (Input.GetMouseButtonUp(0) && stickPlacer.CurrentStatus == StickStatus.Striking) {
             float dist = Vector3.Distance(pullAnchorPos, mouseLocToWorld);
             velocityMultiply *= dist;
             ChangeVel();
-
-            
-
         }
 
         if (stickPlacer.CurrentStatus == StickStatus.Aiming) {
-            ballToStickAngle = Angle((Vector2)transform.position, mouseLocToWorld);
+            ballToStickAngle = VectorCalculator.Angle((Vector2)transform.position, mouseLocToWorld);
             stickPlacer.CueAiming(transform.position, ballToStickAngle);
         }
 
+        if (stickPlacer.CurrentStatus == StickStatus.Retreating) { 
+            // Enter stick pickup animation
+
+
+        }
 
     }
 
@@ -70,6 +74,11 @@ public class VelocityAddition : MonoBehaviour
             AddVel();
         }
 
+        if (rb2d.velocity == Vector2.zero && stickPlacer.CurrentStatus == StickStatus.Retreating)
+        {
+            stickPlacer.StartingPosition(transform.position);
+        }
+
     }
 
     public void ChangeVel()
@@ -77,23 +86,12 @@ public class VelocityAddition : MonoBehaviour
         changeVel = true;
     }
 
-    // Addes velocity to the script holder game object
     public void AddVel()
     {
-        rb2d.velocity = Vector2.right * velocityMultiply;
-        velocityMultiply = 30f;
+        stickPlacer.ChangeCurrentStatus(StickStatus.Retreating);
+        rb2d.velocity = shootingTowards * velocityMultiply;
+        velocityMultiply = 30f;  
         changeVel = false;
-    }
-
-    // returns the angle for two points
-    float Angle(Vector2 point1, Vector2 point2)
-    {
-        float angle = Mathf.Atan2(point1.y - point2.y, point1.x - point2.x) * Mathf.Rad2Deg;
-
-        if (angle < 0) angle += 360f;
-        
-        return angle;
-
     }
 
     private void StickInit()
@@ -103,3 +101,38 @@ public class VelocityAddition : MonoBehaviour
         stickPlacer.StartingPosition(transform.position);
     }
 }
+
+public static class VectorCalculator
+{
+    static float angle;
+
+    public static Vector2 CalculateCartesianVector2(float angle, float magnitued)
+    {
+        float angleInRad = angle * Mathf.Deg2Rad;
+
+        float x = magnitued * Mathf.Cos(angleInRad);
+        float y = magnitued * Mathf.Sin(angleInRad);
+
+        return new Vector2(x, y);
+    }
+
+    public static Vector3 CalculateCartesianVector(float angle, float magnitued)
+    {
+        float angleInRad = angle * Mathf.Deg2Rad;
+
+        float x = magnitued * Mathf.Cos(angleInRad);
+        float y = magnitued * Mathf.Sin(angleInRad);
+
+        return new Vector3(x, y, 0);
+    }
+
+    public static float Angle(Vector2 point1, Vector2 point2)
+    {
+        angle = Mathf.Atan2(point1.y - point2.y, point1.x - point2.x) * Mathf.Rad2Deg;
+
+        if (angle < 0) angle += 360f;
+
+        return angle;
+
+    }
+} 

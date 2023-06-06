@@ -5,11 +5,11 @@ public class StickPlacer : MonoBehaviour
 {
     public StickStatus CurrentStatus { get; private set; }
 
+    public float pointingTowards { get; private set; }
+
     float magnitued = -3f;
-
-
+    
     Vector3 lastBallPos;
-    float lastAimDir;
 
     private void Awake()
     {
@@ -28,11 +28,11 @@ public class StickPlacer : MonoBehaviour
     /// <param name="ballPos">The current postion of the ball the sticks rotates around</param>
     /// <param name="aimDirection">The angle of the stick realtive to the ball, 0 - 360 </param>
     public void CueAiming(Vector3 ballPos, float aimDirection) {
-        Debug.Log(CalculateCartesianVector(aimDirection) +  " " + aimDirection);
+        Debug.Log(VectorCalculator.CalculateCartesianVector(aimDirection,magnitued) +  " " + aimDirection);
         transform.eulerAngles = new Vector3(0, 0, aimDirection);
-        transform.position = ballPos + CalculateCartesianVector(aimDirection);
+        transform.position = ballPos + VectorCalculator.CalculateCartesianVector(aimDirection, magnitued);
 
-        lastAimDir = aimDirection;
+        pointingTowards = aimDirection;
         lastBallPos = ballPos;
     }
 
@@ -41,21 +41,10 @@ public class StickPlacer : MonoBehaviour
         //TODO: create a pull back effect based on the date from this distance
     }
 
-    public void StrikeInitated(bool isInitated)
-    {
-        if (isInitated) CurrentStatus = StickStatus.Striking;
-        else CurrentStatus = StickStatus.Aiming;
+    public void ChangeCurrentStatus(StickStatus status) {
+        CurrentStatus = status;
     }
-
-    Vector3 CalculateCartesianVector(float angle)
-    {
-        float angleInRad = angle * Mathf.Deg2Rad ;
-
-        float x  = magnitued * Mathf.Cos(angleInRad);
-        float y  = magnitued * Mathf.Sin(angleInRad);
-
-        return new Vector3 (x, y, 0);
-    }
+    
 }
 
 
