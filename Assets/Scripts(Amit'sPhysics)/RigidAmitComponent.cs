@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using UnityEngine;
 
 public class RigidAmitComponent : MonoBehaviour
 {
+    public Circle2DAmitCollider rbCollider;
+    
     // The last location of the rigidamit component in the space
-    Transform positionOnLastUpdate;
+    Transform transformOnLastUpdate;
  
     // the current velocity of the rigidamit component
     [SerializeField] Vector2 Velocity;
@@ -14,13 +17,20 @@ public class RigidAmitComponent : MonoBehaviour
     [SerializeField] float Drag;
 
     Vector2 calculationsVector;
-    
+
     float calculatedDrag => Drag/100;
+
+    public Vector2 GetVelocity() => Velocity;
+
+    public void AddVelocity(Vector2 velocity)
+    {
+        this.Velocity = velocity;
+    }
 
     private void Awake()
     {
         // the inital location of the object
-         positionOnLastUpdate = transform;
+         transformOnLastUpdate = transform;
     }
 
     // make this much more flexable !
@@ -39,7 +49,7 @@ public class RigidAmitComponent : MonoBehaviour
             calculationsVector = Velocity * calculatedDrag;
         }
 
-        transform.position = positionOnLastUpdate.position + (Vector3)(Velocity - calculationsVector);
+        transform.position = transformOnLastUpdate.position + (Vector3)(Velocity - calculationsVector);
         Velocity -= calculationsVector;
 
         if (Mathf.Abs(Velocity.magnitude) <= 0.001f)
@@ -47,6 +57,6 @@ public class RigidAmitComponent : MonoBehaviour
             Velocity = Vector2.zero;
         }
 
-        positionOnLastUpdate.position = transform.position;
+        transformOnLastUpdate.position = transform.position;
     }
 }
