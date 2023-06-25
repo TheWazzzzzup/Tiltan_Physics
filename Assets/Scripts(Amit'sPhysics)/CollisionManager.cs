@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
+    private const float minimunMagBounce = .08f;
     public List <RigidAmitComponent> bodies;
 
     private void FixedUpdate()
@@ -21,8 +22,12 @@ public class CollisionManager : MonoBehaviour
                 {
                     bodyA.AddVelocity(-normal * depth / 2);
                     bodyB.AddVelocity(normal * depth / 2);
-                    bodyA.AddVelocity(passedA);
-                    bodyB.AddVelocity(passedB);
+                    float mag = passedA.magnitude;
+                    if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
+                    bodyA.AddVelocity(-normal * mag);
+                    mag = passedB.magnitude;
+                    if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
+                    bodyB.AddVelocity(normal * mag) ;
                 }
             }
         }
