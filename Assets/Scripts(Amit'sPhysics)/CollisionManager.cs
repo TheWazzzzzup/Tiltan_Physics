@@ -17,8 +17,10 @@ public class CollisionManager : MonoBehaviour
 
                 if (IntersectCircle(bodyA.transform.position, bodyA.rbCollider.Radius, bodyA.GetVelocity(),
                     bodyB.transform.position, bodyB.rbCollider.Radius, bodyB.GetVelocity(),
-                    out Vector2 normal, out Vector2 passedA, out Vector2 passedB))
+                    out Vector2 normal, out float depth, out Vector2 passedA, out Vector2 passedB))
                 {
+                    bodyA.AddVelocity(-normal * depth / 2);
+                    bodyB.AddVelocity(normal * depth / 2);
                     bodyA.AddVelocity(passedA);
                     bodyB.AddVelocity(passedB);
                 }
@@ -27,11 +29,12 @@ public class CollisionManager : MonoBehaviour
     }
 
     public static bool IntersectCircle(Vector2 centerA, float radiusA, Vector2 veloA,
-        Vector2 centerB, float radiusB, Vector2 veloB, out Vector2 normal, out Vector2 passVeloA, out Vector2 passVeloB)
+        Vector2 centerB, float radiusB, Vector2 veloB, out Vector2 normal, out float strength, out Vector2 passedA, out Vector2 passedB)
     {
         normal = Vector2.zero;
-        passVeloA = Vector2.zero;
-        passVeloB = Vector2.zero;
+        strength = 0f;
+        passedA = Vector2.zero;
+        passedB = Vector2.zero;
 
         float distance = Vector2.Distance(centerA, centerB);
         float radii = radiusA + radiusB;
@@ -41,9 +44,10 @@ public class CollisionManager : MonoBehaviour
             return false;
         }
 
-        normal = Normalize(centerB - centerA);
-        passVeloA = normal * veloB.magnitude; 
-        passVeloB = normal * veloA.magnitude; 
+        normal = centerB - centerA;
+        strength = radii - distance;
+        passedA = veloB;
+        passedB = veloA;
 
         return true;
     }
