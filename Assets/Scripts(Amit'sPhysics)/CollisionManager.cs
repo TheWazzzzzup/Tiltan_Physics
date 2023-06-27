@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -18,8 +19,18 @@ public class CollisionManager : MonoBehaviour
                 RigidAmitComponent bodyB = bodies[j];
 
 #if true
-                if (IntersectPolygons(bodyA.boxCollider.verts, bodyB.boxCollider.verts))
+                if (IntersectionBoxes(bodyA.boxCollider.verts, bodyB.boxCollider.verts, bodyA.GetVelocity(), bodyB.GetVelocity()
+                    , out Vector2 normal, out float depth, out Vector2 passedA, out Vector2 passedB))
                 {
+                    bodyA.AddVelocity(-normal * depth / 2);
+                    bodyB.AddVelocity(normal * depth / 2);
+                    float mag = passedA.magnitude;
+                    if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
+                    bodyA.AddVelocity(-normal * mag);
+                    mag = passedB.magnitude;
+                    if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
+                    bodyB.AddVelocity(normal * mag);
+
                     Debug.Log("Polygons are touching noder neder!");
                 }
 #endif
@@ -43,9 +54,15 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
-    public static bool IntersectPolygons(Vector2[] vertsA, Vector2[] vertsB)
+    public static bool IntersectionBoxes(Vector2[] vertsA, Vector2[] vertsB, Vector2 veloA, Vector2 veloB, out Vector2 normal, out float depth,
+        out Vector2 passedA, out Vector2 passedB)
     {
-        for (int i = 0; i < vertsA.Length; i++)
+        normal = Vector2.zero;
+        depth = float.MaxValue;
+        passedA = Vector2.zero;
+        passedB = Vector2.zero ;
+
+        for (int i = 0; i < vertsA.Length/2; i++)
         {
             Vector2 va = vertsA[i];
             Vector2 vb = vertsA[(i + 1) % vertsA.Length];
@@ -61,9 +78,12 @@ public class CollisionManager : MonoBehaviour
                 return false;
             }
 
+            float axidDepth = Mathf.Min(maxB - minA, maxA - minB);
+            if (axidDepth < depth) { depth = axidDepth; normal = seperationAxis; }
+
         }
 
-        for (int i = 0; i < vertsB.Length; i++)
+        for (int i = 0; i < vertsB.Length/2; i++)
         {
             Vector2 va = vertsB[i];
             Vector2 vb = vertsB[(i + 1) % vertsB.Length];
@@ -79,9 +99,39 @@ public class CollisionManager : MonoBehaviour
                 return false;
             }
 
+            float axidDepth = Mathf.Min(maxB - minA, maxA - minB);
+            if (axidDepth < depth) { depth = axidDepth; normal = seperationAxis; }
         }
 
+        passedA = veloB;
+        passedB = veloA;
+
+        depth /= normal.magnitude;
+        normal = Normalize(normal);
+
+        Vector2 centerA = GeomarticCenter(vertsA);
+        Vector2 centerB = GeomarticCenter(vertsB);
+
+        Vector2 direction = centerB - centerA;
+
+        if (Vector2.Dot(direction, normal) < 0f) normal = -normal;
+
         return true;
+    }
+
+    static Vector2 GeomarticCenter(Vector2[] verts)
+    {
+        float sumX = 0f;
+        float sumY = 0f;
+
+        for (int i = 0 ; i < verts.Length; i++)
+        {
+            Vector2 v = verts[i];
+            sumX += v.x;
+            sumY += v.y;
+        }
+
+        return new Vector2(sumX / (float)verts.Length, sumY / (float)verts.Length); 
     }
 
     static void ProjectVerts(Vector2[] verts, Vector2 seperationAxis, out float min, out float max)
