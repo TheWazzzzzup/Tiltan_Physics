@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
@@ -31,6 +32,64 @@ public class CollisionManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public static bool IntersectPolygons(Vector2[] vertsA, Vector2[] vertsB)
+    {
+        for (int i = 0; i < vertsA.Length; i++)
+        {
+            Vector2 va = vertsA[i];
+            Vector2 vb = vertsA[(i + 1) % vertsA.Length];
+
+            Vector2 edge = vb - va;
+            Vector2 seperationAxis = new Vector2(-edge.y, edge.x);
+
+            ProjectVerts(vertsA, seperationAxis, out float minA, out float maxA);
+            ProjectVerts(vertsB, seperationAxis, out float minB, out float maxB);
+
+            if (minA >= maxB || minB >= maxA)
+            {
+                return false;
+            }
+
+        }
+
+        for (int i = 0; i < vertsB.Length; i++)
+        {
+            Vector2 va = vertsB[i];
+            Vector2 vb = vertsB[(i + 1) % vertsB.Length];
+
+            Vector2 edge = vb - va;
+            Vector2 seperationAxis = new Vector2(-edge.y, edge.x);
+
+            ProjectVerts(vertsA, seperationAxis, out float minA, out float maxA);
+            ProjectVerts(vertsB, seperationAxis, out float minB, out float maxB);
+
+            if (minA >= maxB || minB >= maxA)
+            {
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    static void ProjectVerts(Vector2[] verts, Vector2 seperationAxis, out float min, out float max)
+    {
+        min = float.MaxValue;
+        max = float.MinValue;
+
+        for (int i = 0; verts.Length > 0; i++)
+        {
+            Vector2 v = verts[i];
+            float projection = Vector2.Dot(v, seperationAxis);
+
+            if (projection < min) min = projection;
+            if (projection > max) max = projection;
+        }
+
+
     }
 
     public static bool IntersectCircle(Vector2 centerA, float radiusA, Vector2 veloA,
