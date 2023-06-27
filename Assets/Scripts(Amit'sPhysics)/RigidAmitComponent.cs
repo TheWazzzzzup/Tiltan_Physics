@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class RigidAmitComponent : MonoBehaviour
 {
-    public Circle2DAmitCollider rbCollider;
+    public Circle2DAmitCollider circleCollider;
+    public Box2DAmitCollider boxCollider;
     
     // The last location of the rigidamit component in the space
     Transform transformOnLastUpdate;

@@ -17,8 +17,8 @@ public class CollisionManager : MonoBehaviour
             {
                 RigidAmitComponent bodyB = bodies[j];
 
-                if (IntersectCircle(bodyA.transform.position, bodyA.rbCollider.Radius, bodyA.GetVelocity(),
-                    bodyB.transform.position, bodyB.rbCollider.Radius, bodyB.GetVelocity(),
+                if (IntersectCircle(bodyA.transform.position, bodyA.circleCollider.Radius, bodyA.GetVelocity(),
+                    bodyB.transform.position, bodyB.circleCollider.Radius, bodyB.GetVelocity(),
                     out Vector2 normal, out float depth, out Vector2 passedA, out Vector2 passedB))
                 {
                     bodyA.AddVelocity(-normal * depth / 2);
