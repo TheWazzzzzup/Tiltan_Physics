@@ -134,6 +134,20 @@ public class CollisionManager : MonoBehaviour
         return new Vector2(sumX / (float)verts.Length, sumY / (float)verts.Length); 
     }
 
+    static void ProjectCircleToAxis(Vector2 axis ,Vector2 pos, float radius, out float min, out float max)
+    {
+        min = float.MaxValue;
+        max = float.MinValue;
+        
+        // check the axis the circle need to project to
+        // find the ???? aligned with this axis
+        // prrject this verte point into the axis
+
+
+
+
+    }
+
     static void ProjectVerts(Vector2[] verts, Vector2 seperationAxis, out float min, out float max)
     {
         min = float.MaxValue;
