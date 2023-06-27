@@ -17,6 +17,14 @@ public class CollisionManager : MonoBehaviour
             {
                 RigidAmitComponent bodyB = bodies[j];
 
+#if true
+                if (IntersectPolygons(bodyA.boxCollider.verts, bodyB.boxCollider.verts))
+                {
+                    Debug.Log("Polygons are touching noder neder!");
+                }
+#endif
+
+#if false
                 if (IntersectCircle(bodyA.transform.position, bodyA.circleCollider.Radius, bodyA.GetVelocity(),
                     bodyB.transform.position, bodyB.circleCollider.Radius, bodyB.GetVelocity(),
                     out Vector2 normal, out float depth, out Vector2 passedA, out Vector2 passedB))
@@ -30,6 +38,7 @@ public class CollisionManager : MonoBehaviour
                     if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
                     bodyB.AddVelocity(normal * mag) ;
                 }
+#endif
             }
         }
     }
@@ -80,7 +89,7 @@ public class CollisionManager : MonoBehaviour
         min = float.MaxValue;
         max = float.MinValue;
 
-        for (int i = 0; verts.Length > 0; i++)
+        for (int i = 0; i < verts.Length; i++)
         {
             Vector2 v = verts[i];
             float projection = Vector2.Dot(v, seperationAxis);
@@ -88,8 +97,6 @@ public class CollisionManager : MonoBehaviour
             if (projection < min) min = projection;
             if (projection > max) max = projection;
         }
-
-
     }
 
     public static bool IntersectCircle(Vector2 centerA, float radiusA, Vector2 veloA,

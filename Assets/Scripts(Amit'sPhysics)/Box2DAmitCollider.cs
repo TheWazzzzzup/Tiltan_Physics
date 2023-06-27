@@ -15,8 +15,8 @@ public class Box2DAmitCollider : MonoBehaviour
 
 
     Vector2 scale;
-    
-    public Vector2[] verts { get; protected set; } = new Vector2[4];
+
+    public Vector2[] verts => UpdateColliderVerts();
 
     int vertIndex = 0;
 
@@ -35,22 +35,26 @@ public class Box2DAmitCollider : MonoBehaviour
         Debug.DrawLine(verts[3], verts[0], Color.green, 1f);
     }
 
-    void UpdateColliderVerts()
+    Vector2[] UpdateColliderVerts()
     {
+        Vector2[] newVerts = new Vector2[4]; 
+
         if (AutoScale)
         {
             scale = transform.localScale;
             Size = scale;
         }
         else scale = Size;
+
         vertIndex = 0;
-        verts[vertIndex] = new Vector2(transform.position.x - (scale.x / 2) + Offset.x, transform.position.y + scale.y / 2 + Offset.y);
+        newVerts[vertIndex] = new Vector2(transform.position.x - (scale.x / 2) + Offset.x, transform.position.y + scale.y / 2 + Offset.y);
         vertIndex++;
-        verts[vertIndex] = new Vector2(transform.position.x + (scale.x / 2) + Offset.x, transform.position.y + scale.y / 2 + Offset.y);
+        newVerts[vertIndex] = new Vector2(transform.position.x + (scale.x / 2) + Offset.x, transform.position.y + scale.y / 2 + Offset.y);
         vertIndex++;
-        verts[vertIndex] = new Vector2(transform.position.x + (scale.x / 2) + Offset.x, transform.position.y - scale.y / 2 + Offset.y);
+        newVerts[vertIndex] = new Vector2(transform.position.x + (scale.x / 2) + Offset.x, transform.position.y - scale.y / 2 + Offset.y);
         vertIndex++;
-        verts[vertIndex] = new Vector2(transform.position.x - (scale.x / 2) + Offset.x, transform.position.y - scale.y / 2 + Offset.y);
+        newVerts[vertIndex] = new Vector2(transform.position.x - (scale.x / 2) + Offset.x, transform.position.y - scale.y / 2 + Offset.y);
         vertIndex++;
+        return newVerts;
     }
 }
