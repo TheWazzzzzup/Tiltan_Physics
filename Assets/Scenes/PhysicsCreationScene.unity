@@ -167,8 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 293315403}
   boxCollider: {fileID: 0}
+  shapeType: 0
+  isStatic: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &293315405
@@ -268,6 +270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodies:
+  - {fileID: 640730116}
+  - {fileID: 1102771278}
+  - {fileID: 293315404}
+  - {fileID: 579305411}
+  - {fileID: 1181963604}
   - {fileID: 535732359}
   - {fileID: 1794455983}
 --- !u!4 &499118318
@@ -283,7 +290,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &535732357
 GameObject:
@@ -334,7 +341,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 535732358}
-  Velocity: {x: -0.2, y: 0}
+  shapeType: 1
+  isStatic: 0
+  Velocity: {x: -0.6, y: 0}
   Drag: 2
 --- !u!212 &535732360
 SpriteRenderer:
@@ -396,7 +405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535732357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.93, y: 8.68, z: -12.491463}
+  m_LocalPosition: {x: 17.65, y: 6.65, z: -12.491463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -447,8 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 579305410}
   boxCollider: {fileID: 0}
+  shapeType: 0
+  isStatic: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &579305412
@@ -597,12 +608,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640730113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43, y: 1.3, z: 5.5}
+  m_LocalPosition: {x: -9.88, y: 2.24, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &640730116
 MonoBehaviour:
@@ -616,9 +627,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 640730117}
   boxCollider: {fileID: 0}
-  Velocity: {x: 1, y: 0}
+  shapeType: 0
+  isStatic: 0
+  Velocity: {x: 1, y: 1}
   Drag: 1.58
 --- !u!114 &640730117
 MonoBehaviour:
@@ -677,8 +690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 1102771277}
   boxCollider: {fileID: 0}
+  shapeType: 0
+  isStatic: 1
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1102771279
@@ -741,7 +756,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102771276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.550003, y: 1.46, z: 5.5}
+  m_LocalPosition: {x: 0.47, y: 11.86, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -792,8 +807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleCollider: {fileID: 0}
+  circleCollider: {fileID: 1181963603}
   boxCollider: {fileID: 0}
+  shapeType: 0
+  isStatic: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1181963605
@@ -856,7 +873,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181963602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9, y: 4.12, z: 5.5}
+  m_LocalPosition: {x: 2.56, y: 1.07, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1174,6 +1191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 1794455982}
+  shapeType: 1
+  isStatic: 1
   Velocity: {x: 0, y: 0}
   Drag: 2
 --- !u!212 &1794455984
@@ -1236,7 +1255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794455981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.11, y: 8.63, z: -12.491463}
+  m_LocalPosition: {x: -4.11, y: 6.65, z: -12.491463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -8,7 +8,9 @@ public class RigidAmitComponent : MonoBehaviour
 {
     public Circle2DAmitCollider circleCollider;
     public Box2DAmitCollider boxCollider;
-    
+    public ShapeType shapeType;
+    public bool isStatic = false;
+
     // The last location of the rigidamit component in the space
     Transform transformOnLastUpdate;
  
@@ -60,4 +62,10 @@ public class RigidAmitComponent : MonoBehaviour
 
         transformOnLastUpdate.position = transform.position;
     }
+}
+
+public enum ShapeType
+{
+    Circle,
+    Box
 }
