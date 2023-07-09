@@ -222,26 +222,32 @@ public class CollisionManager : MonoBehaviour
     
     static void CalculateResulotion(RigidAmitComponent bodyA, RigidAmitComponent bodyB, float deep, Vector2 passedA, Vector2 passedB, Vector2 normal)
     {
+        if (bodyA.isTrigger || bodyB.isTrigger)
+        {
+            // Create a onTriggerEnterEvent !
+            return;
+        }
+
         if (bodyA.isStatic && !bodyB.isStatic)
         {
-            //bodyA.AddVelocity(-normal * deep / 2);
-            bodyB.AddVelocity(normal * deep);
+            bodyB.AddVelocity(normal * deep); 
             float mag = passedA.magnitude;
-            //if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
-            //bodyA.AddVelocity(-normal * mag);
             if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
-            bodyB.AddVelocity(-normal * mag);
+
+            Vector2 newNormal = StaticInteractoionNormal(normal,passedA);
+
+            bodyB.AddVelocity(newNormal);
         }
 
         if (!bodyA.isStatic && bodyB.isStatic)
         {
-            //bodyA.AddVelocity(-normal * deep / 2);
             bodyA.AddVelocity(normal * deep);
             float mag = passedB.magnitude;
-            //if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
-            //bodyA.AddVelocity(-normal * mag);
             if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
-            bodyA.AddVelocity(-normal * mag);
+
+            Vector2 newNormal = StaticInteractoionNormal(normal,passedB);
+
+            bodyA.AddVelocity(newNormal);
         }
 
         else if (!bodyA.isStatic && !bodyB.isStatic)
@@ -255,6 +261,32 @@ public class CollisionManager : MonoBehaviour
             if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
             bodyB.AddVelocity(normal * mag);
         }
+    }
+
+    public static Vector2 Normalize(Vector2 v)
+    {
+        float mag = v.magnitude;
+        return new Vector2(v.x / mag, v.y / mag);
+
+    }
+
+    static Vector2 StaticInteractoionNormal(Vector2 normal,Vector2 velo)
+    {
+        Vector2 value = Vector2.zero;
+
+        if (normal.x > 0f && normal.y > 0f) { Debug.LogWarning($"normal is on an angle in method {nameof(StaticInteractoionNormal)}"); }
+
+        if (normal.x > 0f)
+        {
+            value = new Vector2(-velo.x, velo.y);
+        }
+
+        else if (normal.y > 0f)
+        {
+            value = new Vector2(velo.x, -velo.y);
+        }
+
+        return value;
     }
 
     static int FindClosestPointOnPolygon(Vector2 circleCenter, Vector2[] verts)
@@ -325,11 +357,5 @@ public class CollisionManager : MonoBehaviour
         return new Vector2(sumX / (float)verts.Length, sumY / (float)verts.Length); 
     }
 
-    public static Vector2 Normalize(Vector2 v)
-    {
-        float mag = v.magnitude;
-        return new Vector2(v.x / mag, v.y / mag);
-
-    }
     #endregion
 }

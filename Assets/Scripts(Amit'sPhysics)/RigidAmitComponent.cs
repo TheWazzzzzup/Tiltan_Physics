@@ -10,6 +10,7 @@ public class RigidAmitComponent : MonoBehaviour
     public Box2DAmitCollider boxCollider;
     public ShapeType shapeType;
     public bool isStatic = false;
+    public bool isTrigger = false;
 
     // The last location of the rigidamit component in the space
     Transform transformOnLastUpdate;

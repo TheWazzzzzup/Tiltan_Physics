@@ -171,6 +171,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   shapeType: 0
   isStatic: 0
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &293315405
@@ -343,7 +344,8 @@ MonoBehaviour:
   boxCollider: {fileID: 535732358}
   shapeType: 1
   isStatic: 0
-  Velocity: {x: -0.6, y: 0}
+  isTrigger: 0
+  Velocity: {x: 0, y: -0.6}
   Drag: 2
 --- !u!212 &535732360
 SpriteRenderer:
@@ -405,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535732357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.65, y: 6.65, z: -12.491463}
+  m_LocalPosition: {x: -6.26, y: 21.56, z: -12.491463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -460,6 +462,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   shapeType: 0
   isStatic: 0
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &579305412
@@ -608,7 +611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640730113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.88, y: 2.24, z: 5.5}
+  m_LocalPosition: {x: -45.9, y: -24.3, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,7 +634,8 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   shapeType: 0
   isStatic: 0
-  Velocity: {x: 1, y: 1}
+  isTrigger: 0
+  Velocity: {x: 0.5, y: 0.5}
   Drag: 1.58
 --- !u!114 &640730117
 MonoBehaviour:
@@ -693,7 +697,8 @@ MonoBehaviour:
   circleCollider: {fileID: 1102771277}
   boxCollider: {fileID: 0}
   shapeType: 0
-  isStatic: 1
+  isStatic: 0
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1102771279
@@ -756,7 +761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102771276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 11.86, z: 5.5}
+  m_LocalPosition: {x: 1.74, y: 15.92, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -811,6 +816,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   shapeType: 0
   isStatic: 0
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1181963605
@@ -1173,10 +1179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db5f44d93423f248b779022ee6c7ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Size: {x: 1, y: 1}
+  Size: {x: 1, y: 7}
   Offset: {x: 0, y: 0}
   AutoScale: 0
-  validateRefresh: 0
+  validateRefresh: 1
 --- !u!114 &1794455983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1199,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1794455982}
   shapeType: 1
   isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 2
 --- !u!212 &1794455984
@@ -1255,8 +1262,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794455981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.11, y: 6.65, z: -12.491463}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -26.91, y: -5.82, z: -12.491463}
+  m_LocalScale: {x: 1, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
