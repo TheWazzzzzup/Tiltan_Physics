@@ -172,6 +172,9 @@ MonoBehaviour:
   shapeType: 0
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &293315405
@@ -345,6 +348,9 @@ MonoBehaviour:
   shapeType: 1
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: -0.6}
   Drag: 2
 --- !u!212 &535732360
@@ -463,6 +469,9 @@ MonoBehaviour:
   shapeType: 0
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &579305412
@@ -635,6 +644,9 @@ MonoBehaviour:
   shapeType: 0
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0.5, y: 0.5}
   Drag: 1.58
 --- !u!114 &640730117
@@ -699,6 +711,9 @@ MonoBehaviour:
   shapeType: 0
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1102771279
@@ -817,6 +832,9 @@ MonoBehaviour:
   shapeType: 0
   isStatic: 0
   isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: 0}
   Drag: 1.58
 --- !u!212 &1181963605
@@ -1160,8 +1178,9 @@ GameObject:
   - component: {fileID: 1794455984}
   - component: {fileID: 1794455983}
   - component: {fileID: 1794455982}
+  - component: {fileID: 1794455986}
   m_Layer: 0
-  m_Name: Square
+  m_Name: SquareBigRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1199,7 +1218,10 @@ MonoBehaviour:
   boxCollider: {fileID: 1794455982}
   shapeType: 1
   isStatic: 1
-  isTrigger: 0
+  isTrigger: 1
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Velocity: {x: 0, y: 0}
   Drag: 2
 --- !u!212 &1794455984
@@ -1269,3 +1291,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1794455986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794455981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cdbac2b13ec70644be7e36bfed0eaee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

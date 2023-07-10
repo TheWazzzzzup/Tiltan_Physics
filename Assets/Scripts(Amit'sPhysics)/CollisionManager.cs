@@ -225,6 +225,8 @@ public class CollisionManager : MonoBehaviour
         if (bodyA.isTrigger || bodyB.isTrigger)
         {
             // Create a onTriggerEnterEvent !
+            bodyA.TriggerEvent.Invoke(bodyB);
+            bodyB.TriggerEvent.Invoke(bodyA);
             return;
         }
 
