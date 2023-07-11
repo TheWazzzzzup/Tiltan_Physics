@@ -13,7 +13,8 @@ public class VelocityAddition : MonoBehaviour
 
 
     // Private
-    Rigidbody2D rb2d;
+    //Rigidbody2D rb2d;
+    RigidAmitComponent ra;
     StickPlacer stickPlacer;
 
     Vector2 mouseLocToWorld;
@@ -23,14 +24,14 @@ public class VelocityAddition : MonoBehaviour
     Vector3 pullAnchorPos;
 
     float ballToStickAngle;
-    float velocityMultiply = 30f;
+    float velocityMultiply = .8f;
 
     bool changeVel = false;
 
     
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        ra = GetComponent<RigidAmitComponent>();
         StickInit();
     }
 
@@ -74,7 +75,7 @@ public class VelocityAddition : MonoBehaviour
             AddVel();
         }
 
-        if (rb2d.velocity == Vector2.zero && stickPlacer.CurrentStatus == StickStatus.Retreating)
+        if (ra.GetVelocity() == Vector2.zero && stickPlacer.CurrentStatus == StickStatus.Retreating)
         {
             stickPlacer.StartingPosition(transform.position);
         }
@@ -89,7 +90,7 @@ public class VelocityAddition : MonoBehaviour
     public void AddVel()
     {
         stickPlacer.ChangeCurrentStatus(StickStatus.Retreating);
-        rb2d.velocity = shootingTowards * velocityMultiply;
+        ra.AddVelocity(shootingTowards * velocityMultiply);
         velocityMultiply = 30f;  
         changeVel = false;
     }
@@ -100,6 +101,7 @@ public class VelocityAddition : MonoBehaviour
         stickPlacer = stickClone.GetComponent<StickPlacer>();
         stickPlacer.StartingPosition(transform.position);
     }
+
 }
 
 public static class VectorCalculator

@@ -6,6 +6,12 @@ public class BallLogic : MonoBehaviour
 {
     Ball ballIndentity;
 
+    private void Start()
+    {
+        RigidAmitComponent rigidAmit = GetComponent<RigidAmitComponent>();
+        rigidAmit.TriggerEvent.AddListener(CustomTriggerEnter);
+    }
+
     public void PassBallIndentity(Ball currentBall)
     {
         ballIndentity = currentBall;
@@ -19,12 +25,24 @@ public class BallLogic : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void CustomTriggerEnter(RigidAmitComponent ra)
     {
-        if (collision.CompareTag("Pot"))
+        if (ra.CompareTag("Pot"))
         {
             ballIndentity.ChangeBallStatus(BallStatus.Potted);
         }
         ChangeBallStatus();
+        Debug.Log($"{gameObject.name} ball status is {ballIndentity.MyStatus}");
     }
+
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Pot"))
+    //    {
+    //        ballIndentity.ChangeBallStatus(BallStatus.Potted);
+    //    }
+    //    ChangeBallStatus();
+    //}
+
 }

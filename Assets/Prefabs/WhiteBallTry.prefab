@@ -10,14 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3369590082452172968}
   - component: {fileID: 3369590082452172973}
-  - component: {fileID: 3369590082452172972}
-  - component: {fileID: 3369590082452172975}
   - component: {fileID: 3369590082452172974}
   - component: {fileID: 3369590082452172969}
   - component: {fileID: 6195325947413181683}
   - component: {fileID: -6640091613331789425}
   m_Layer: 0
-  m_Name: WhiteBall
+  m_Name: WhiteBallTry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,43 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3369590082452172972
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369590082452172971}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
---- !u!50 &3369590082452172975
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369590082452172971}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1.2
-  m_AngularDrag: 0.5
-  m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 8c019b1273b0fd74abc3631f22398f5f, type: 2}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!114 &3369590082452172974
 MonoBehaviour:
   m_ObjectHideFlags: 0

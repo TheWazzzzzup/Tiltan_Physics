@@ -19,10 +19,12 @@ public class GameLoopManager : MonoBehaviour
         ballManager = new(15);
         ballInstancer.InjectBallManager(ballManager);
     }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F)) RefreshUI();
     }
+
     void RefreshUI()
     {
         
