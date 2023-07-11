@@ -278,12 +278,12 @@ public class CollisionManager : MonoBehaviour
 
         if (normal.x > 0f && normal.y > 0f) { Debug.LogWarning($"normal is on an angle in method {nameof(StaticInteractoionNormal)}"); }
 
-        if (normal.x > 0f)
+        if (Mathf.Abs(normal.x) > 0f)
         {
             value = new Vector2(-velo.x, velo.y);
         }
 
-        else if (normal.y > 0f)
+        else if (Mathf.Abs(normal.y) > 0f)
         {
             value = new Vector2(velo.x, -velo.y);
         }
