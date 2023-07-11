@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Circle2DAmitCollider : MonoBehaviour
 {
-    public float Radius => transform.localScale.x / 2;
+    public float Radius;
 
     public bool validateRefresh;
 
