@@ -1214,6 +1214,7 @@ MonoBehaviour:
   stripeBallNumSeven: {fileID: 3992790373324710624, guid: b6a1fd5f845c2d54482eb5a2439d4205, type: 3}
   triangleStartingTransform: {fileID: 1815146751}
   whiteStatingTransform: {fileID: 127858048}
+  collisionManager: {fileID: 1559911820}
 --- !u!4 &1279596833
 Transform:
   m_ObjectHideFlags: 0

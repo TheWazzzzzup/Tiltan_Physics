@@ -31,6 +31,7 @@ public class BallInstancer : MonoBehaviour
 
     [SerializeField] Transform triangleStartingTransform;
     [SerializeField] Transform whiteStatingTransform;
+    [SerializeField] CollisionManager collisionManager; 
 
 
     GameObject ball;
@@ -46,7 +47,8 @@ public class BallInstancer : MonoBehaviour
         {
             this.ballManager = ballManager;
 
-            Instantiate(whiteBall, whiteStatingTransform);
+            ball = Instantiate(whiteBall, whiteStatingTransform);
+            collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
 
             InstanceBalls();
         }
@@ -92,62 +94,77 @@ public class BallInstancer : MonoBehaviour
             case 0:
                 ball = Instantiate(fillBallNumOne, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 1:
                 ball = Instantiate(fillBallNumTwo, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 2:
                 ball = Instantiate(fillBallNumThree, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 3:
                 ball = Instantiate(fillBallNumFour, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 4:
                 ball = Instantiate(fillBallNumFive, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 5:
                 ball = Instantiate(fillBallNumSix, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 6:
                 ball = Instantiate(fillBallNumSeven, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 7:
                 ball = Instantiate(eightBall, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 8:
                 ball = Instantiate(stripeBallNumOne, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 9:
                 ball = Instantiate(stripeBallNumTwo, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 10:
                 ball = Instantiate(stripeBallNumThree, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 11:
                 ball = Instantiate(stripeBallNumFour, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 12:
                 ball = Instantiate(stripeBallNumFive, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 13:
                 ball = Instantiate(stripeBallNumSix, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             case 14:
                 ball = Instantiate(stripeBallNumSeven, spawnLocation.transform.position, spawnLocation.transform.rotation);
                 ball.GetComponent<BallLogic>().PassBallIndentity(ballManager.balls[numInOrder]);
+                collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
                 break;
             default:
                 Debug.LogWarning($"To Many Balls in {this.name} script, instaniate by number inserted non logic number");

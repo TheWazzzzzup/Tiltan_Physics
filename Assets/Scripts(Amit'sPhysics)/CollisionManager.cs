@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class CollisionManager : MonoBehaviour
 {
-    private const float minimunMagBounce = .08f;
+    private const float minimunMagBounce = .1f;
     public List <RigidAmitComponent> bodies;
 
     private void FixedUpdate()

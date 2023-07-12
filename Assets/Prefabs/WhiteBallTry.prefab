@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3369590082452172968}
   - component: {fileID: 3369590082452172973}
-  - component: {fileID: 3369590082452172974}
   - component: {fileID: 3369590082452172969}
+  - component: {fileID: 3369590082452172974}
   - component: {fileID: 6195325947413181683}
   - component: {fileID: -6640091613331789425}
   m_Layer: 0
@@ -88,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3369590082452172969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3369590082452172971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36a0ab5b8122f144b453ae162fafc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3369590082452172974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,18 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickPrefab: {fileID: 5405911473342920060, guid: 8a8362ff0bacb514a9b278e259293349, type: 3}
---- !u!114 &3369590082452172969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3369590082452172971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c36a0ab5b8122f144b453ae162fafc02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6195325947413181683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Velocity: {x: 0, y: 0}
-  Drag: 0
+  Drag: 0.8
 --- !u!114 &-6640091613331789425
 MonoBehaviour:
   m_ObjectHideFlags: 0

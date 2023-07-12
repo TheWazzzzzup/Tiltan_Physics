@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3874387225274917454}
   - component: {fileID: 3874387225274917455}
   - component: {fileID: 3874387225274917453}
+  - component: {fileID: -4675786354292702185}
+  - component: {fileID: 2848709457719769128}
   m_Layer: 0
   m_Name: Stripe3
   m_TagString: Untagged
@@ -136,3 +138,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36a0ab5b8122f144b453ae162fafc02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4675786354292702185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874387225274917451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b15ef5f0160a304494438c1d60c1c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleCollider: {fileID: 2848709457719769128}
+  boxCollider: {fileID: 0}
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 0
+  TriggerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  Velocity: {x: 0, y: 0}
+  Drag: 0.8
+--- !u!114 &2848709457719769128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874387225274917451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0050941a7a6ed9e428467ca6c2bf7782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 1
+  validateRefresh: 0

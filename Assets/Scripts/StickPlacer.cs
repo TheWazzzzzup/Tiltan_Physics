@@ -28,7 +28,7 @@ public class StickPlacer : MonoBehaviour
     /// <param name="ballPos">The current postion of the ball the sticks rotates around</param>
     /// <param name="aimDirection">The angle of the stick realtive to the ball, 0 - 360 </param>
     public void CueAiming(Vector3 ballPos, float aimDirection) {
-        Debug.Log(VectorCalculator.CalculateCartesianVector(aimDirection,magnitued) +  " " + aimDirection);
+        //Debug.Log(VectorCalculator.CalculateCartesianVector(aimDirection,magnitued) +  " " + aimDirection);
         transform.eulerAngles = new Vector3(0, 0, aimDirection);
         transform.position = ballPos + VectorCalculator.CalculateCartesianVector(aimDirection, magnitued);
 
