@@ -5,26 +5,28 @@ using UnityEngine.UIElements;
 
 public class VelocityAddition : MonoBehaviour
 {
-
     // Public
 
+
     // Serialized
+    
     [SerializeField] GameObject stickPrefab;
 
 
     // Private
-    //Rigidbody2D rb2d;
+
     RigidAmitComponent ra;
+    
     StickPlacer stickPlacer;
 
     Vector2 mouseLocToWorld;
-
     Vector2 shootingTowards;
 
     Vector3 pullAnchorPos;
 
     float ballToStickAngle;
     float velocityMultiply = .01f;
+    float dist;
 
     bool changeVel = false;
 
@@ -50,8 +52,7 @@ public class VelocityAddition : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(0) && stickPlacer.CurrentStatus == StickStatus.Striking) {
-            float dist = Vector3.Distance(pullAnchorPos, mouseLocToWorld);
-            velocityMultiply *= dist;
+            dist = Vector3.Distance(pullAnchorPos, mouseLocToWorld);
             ChangeVel();
         }
 
@@ -82,17 +83,17 @@ public class VelocityAddition : MonoBehaviour
 
     }
 
-    public void ChangeVel()
-    {
-        changeVel = true;
-    }
+    public void ChangeVel() => changeVel = true;
 
     public void AddVel()
     {
         stickPlacer.ChangeCurrentStatus(StickStatus.Retreating);
-        ra.AddVelocity(shootingTowards * velocityMultiply);
+        float x = Mathf.InverseLerp(0, 100, dist);
+        x = Mathf.Lerp(1, 2.5f, x);
+        ra.AddVelocity(shootingTowards * x);
         velocityMultiply = 30f;  
         changeVel = false;
+
     }
 
     private void StickInit()
@@ -100,9 +101,11 @@ public class VelocityAddition : MonoBehaviour
         GameObject stickClone = Instantiate(stickPrefab);
         stickPlacer = stickClone.GetComponent<StickPlacer>();
         stickPlacer.StartingPosition(transform.position);
+
     }
 
 }
+
 
 public static class VectorCalculator
 {
