@@ -256,8 +256,8 @@ public class CollisionManager : MonoBehaviour
             ApartA = -normal * deep / 2;
             ApartB = normal * deep / 2;
 
-            NewA = (passedA.magnitude - 0.08f) * -normal;
-            NewB = (passedB.magnitude - 0.08f) * normal;
+            NewA = (passedA.magnitude * 0.5f) * -normal;
+            NewB = (passedB.magnitude * 0.5f) * normal;
 
             if (ApartA.magnitude > NewA.magnitude) bodyA.AddVelocity(ApartA);
             else { bodyA.AddVelocity(NewA); } 

@@ -44,7 +44,6 @@ public class RigidAmitComponent : MonoBehaviour
     // make this much more flexable !
     private void FixedUpdate()
     {
-        // TODO: Fix the stop bounce this method creates // When close to a stop, this make the object come to a stop faster
         if (Mathf.Abs(Velocity.magnitude) <= 0.1f)
         {
             calculationsVector = Velocity * (calculatedDrag * 5);
