@@ -134,7 +134,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Velocity: {x: 0, y: 0}
-  Drag: 0.8
+  Drag: 1.2
 --- !u!114 &-6640091613331789425
 MonoBehaviour:
   m_ObjectHideFlags: 0

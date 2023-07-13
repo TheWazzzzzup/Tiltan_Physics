@@ -120,7 +120,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Velocity: {x: 0, y: 0}
-  Drag: 0.8
+  Drag: 1.2
 --- !u!114 &-5889545954234249737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1
-  validateRefresh: 0
+  validateRefresh: 1

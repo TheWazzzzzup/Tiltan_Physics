@@ -38,8 +38,8 @@ public class BallInstancer : MonoBehaviour
 
     BallManager ballManager;                               // * Maybe inherht form ball manager in the furure *
 
-    float  instanceOffsetY = 1.1f;
-    float instanceOffsetX = 1.8f;
+    float  instanceOffsetY = 1.5f;
+    float instanceOffsetX = 3f;
 
     public void InjectBallManager(BallManager ballManager)
     {

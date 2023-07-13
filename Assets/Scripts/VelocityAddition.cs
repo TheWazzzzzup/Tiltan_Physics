@@ -24,7 +24,7 @@ public class VelocityAddition : MonoBehaviour
     Vector3 pullAnchorPos;
 
     float ballToStickAngle;
-    float velocityMultiply = .8f;
+    float velocityMultiply = .01f;
 
     bool changeVel = false;
 

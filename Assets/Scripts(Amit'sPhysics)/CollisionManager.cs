@@ -26,7 +26,7 @@ public class CollisionManager : MonoBehaviour
                 {
                     if (IntersectCircle(bodyA.transform.position, bodyA.circleCollider.Radius, bodyA.GetVelocity(),
                         bodyB.transform.position, bodyB.circleCollider.Radius, bodyB.GetVelocity(),
-                        out normal, out deep, out  passedA, out  passedB))
+                        out normal, out deep, out passedA, out passedB))
                     {
                         CalculateResulotion(bodyA, bodyB, deep, passedA, passedB, normal);
                     }
@@ -37,7 +37,7 @@ public class CollisionManager : MonoBehaviour
                 {
                     // 2 Box collision
                     if (IntersectionBoxes(bodyA.boxCollider.verts, bodyB.boxCollider.verts, bodyA.GetVelocity(), bodyB.GetVelocity()
-                        , out  normal, out deep, out  passedA, out  passedB))
+                        , out normal, out deep, out passedA, out passedB))
                     {
                         CalculateResulotion(bodyA, bodyB, deep, passedA, passedB, normal);
                     }
@@ -64,8 +64,6 @@ public class CollisionManager : MonoBehaviour
             }
         }
     }
-
-
 
     #region Calculators
     public static bool IntersectionBoxes(Vector2[] vertsA, Vector2[] vertsB, Vector2 veloA, Vector2 veloB, out Vector2 normal, out float depth,
@@ -222,6 +220,7 @@ public class CollisionManager : MonoBehaviour
     
     static void CalculateResulotion(RigidAmitComponent bodyA, RigidAmitComponent bodyB, float deep, Vector2 passedA, Vector2 passedB, Vector2 normal)
     {
+        Vector2 ApartA,ApartB,NewA,NewB;
         if (bodyA.isTrigger || bodyB.isTrigger)
         {
             // Create a onTriggerEnterEvent !
@@ -232,36 +231,40 @@ public class CollisionManager : MonoBehaviour
 
         if (bodyA.isStatic && !bodyB.isStatic)
         {
-            bodyB.AddVelocity(normal * deep); 
-            float mag = passedA.magnitude;
-            if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
+            ApartB = - normal * deep ;
 
-            Vector2 newNormal = StaticInteractoionNormal(normal,passedA);
 
-            bodyB.AddVelocity(newNormal);
+            Vector2 newVelo = StaticInteractoionNormal(normal, passedA * 0.8f);
+            
+
+            if (newVelo.magnitude > ApartB.magnitude) bodyB.AddVelocity(newVelo);
+            else { bodyB.AddVelocity(ApartB); }
         }
 
         if (!bodyA.isStatic && bodyB.isStatic)
         {
-            bodyA.AddVelocity(normal * deep);
-            float mag = passedB.magnitude;
-            if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
+            ApartA = -normal * deep;
 
-            Vector2 newNormal = StaticInteractoionNormal(normal,passedB);
-
-            bodyA.AddVelocity(newNormal);
+            Vector2 newVelo = StaticInteractoionNormal(normal, passedB * 0.8f);
+            
+            if (newVelo.magnitude > ApartA.magnitude) bodyA.AddVelocity(newVelo);
+            else { bodyA.AddVelocity(ApartA); }
         }
 
         else if (!bodyA.isStatic && !bodyB.isStatic)
         {
-            bodyA.AddVelocity(-normal * deep / 2);
-            bodyB.AddVelocity(normal * deep / 2);
-            float mag = passedA.magnitude;
-            if (mag <= 0f) mag = minimunMagBounce * passedB.magnitude;
-            bodyA.AddVelocity(-normal * mag);
-            mag = passedB.magnitude;
-            if (mag <= 0f) mag = minimunMagBounce * passedA.magnitude;
-            bodyB.AddVelocity(normal * mag);
+            ApartA = -normal * deep / 2;
+            ApartB = normal * deep / 2;
+
+            NewA = (passedA.magnitude - 0.08f) * -normal;
+            NewB = (passedB.magnitude - 0.08f) * normal;
+
+            if (ApartA.magnitude > NewA.magnitude) bodyA.AddVelocity(ApartA);
+            else { bodyA.AddVelocity(NewA); } 
+
+            if(ApartB.magnitude > NewB.magnitude) bodyB.AddVelocity(ApartB);
+            else { bodyB.AddVelocity(NewB);}
+
         }
     }
 
