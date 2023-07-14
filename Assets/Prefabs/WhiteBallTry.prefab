@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickPrefab: {fileID: 5405911473342920060, guid: 8a8362ff0bacb514a9b278e259293349, type: 3}
+  turnPlayed: {fileID: 11400000, guid: 6deeaf99887dc4b4eb8f4c961ec11d01, type: 2}
 --- !u!114 &6195325947413181683
 MonoBehaviour:
   m_ObjectHideFlags: 0

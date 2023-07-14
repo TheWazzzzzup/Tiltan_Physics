@@ -11,7 +11,7 @@ public class VelocityAddition : MonoBehaviour
     // Serialized
     
     [SerializeField] GameObject stickPrefab;
-
+    [SerializeField] GameEvent turnPlayed;
 
     // Private
 
@@ -79,6 +79,7 @@ public class VelocityAddition : MonoBehaviour
         if (ra.GetVelocity() == Vector2.zero && stickPlacer.CurrentStatus == StickStatus.Retreating)
         {
             stickPlacer.StartingPosition(transform.position);
+            turnPlayed.Raise();
         }
 
     }
@@ -93,7 +94,6 @@ public class VelocityAddition : MonoBehaviour
         ra.AddVelocity(shootingTowards * x);
         velocityMultiply = 30f;  
         changeVel = false;
-
     }
 
     private void StickInit()

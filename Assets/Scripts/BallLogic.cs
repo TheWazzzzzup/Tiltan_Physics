@@ -35,14 +35,4 @@ public class BallLogic : MonoBehaviour
         Debug.Log($"{gameObject.name} ball status is {ballIndentity.MyStatus}");
     }
 
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Pot"))
-    //    {
-    //        ballIndentity.ChangeBallStatus(BallStatus.Potted);
-    //    }
-    //    ChangeBallStatus();
-    //}
-
 }
