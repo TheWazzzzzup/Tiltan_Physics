@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Circle2DAmitCollider : MonoBehaviour
 {
-    public float Radius;
+    public float Radius;                    // The raidus of the object
 
-    public bool validateRefresh;
+    public bool ValidateRefresh;            // Refresh the debug of the object
 
 
     private void OnValidate()

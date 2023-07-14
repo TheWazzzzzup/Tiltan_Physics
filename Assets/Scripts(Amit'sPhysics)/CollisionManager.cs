@@ -7,14 +7,16 @@ using UnityEngine.UIElements;
 
 public class CollisionManager : MonoBehaviour
 {
-    private const float minimunMagBounce = .1f;
-    public List <RigidAmitComponent> bodies;
+    public List <RigidAmitComponent> bodies;        // The List of rigidbodies
+    
+    private const float minimunMagBounce = .1f;     
 
     private void FixedUpdate()
     {
         for (int i = 0; i < bodies.Count - 1; i++)
         {
             RigidAmitComponent bodyA = bodies[i];
+
             for (int j = i + 1; j < bodies.Count; j++)
             {
                 RigidAmitComponent bodyB = bodies[j];
@@ -36,7 +38,7 @@ public class CollisionManager : MonoBehaviour
                 if (bodyA.shapeType == ShapeType.Box && bodyB.shapeType == ShapeType.Box)
                 {
                     // 2 Box collision
-                    if (IntersectionBoxes(bodyA.boxCollider.verts, bodyB.boxCollider.verts, bodyA.GetVelocity(), bodyB.GetVelocity()
+                    if (IntersectionBoxes(bodyA.boxCollider.Verts, bodyB.boxCollider.Verts, bodyA.GetVelocity(), bodyB.GetVelocity()
                         , out normal, out deep, out passedA, out passedB))
                     {
                         CalculateResulotion(bodyA, bodyB, deep, passedA, passedB, normal);
@@ -45,7 +47,7 @@ public class CollisionManager : MonoBehaviour
 
                 if (bodyB.shapeType == ShapeType.Box && bodyA.shapeType == ShapeType.Circle)
                 {
-                    if (IntersectBoxCircle(bodyA.transform.position, bodyA.circleCollider.Radius, bodyB.boxCollider.verts, bodyA.GetVelocity(),
+                    if (IntersectBoxCircle(bodyA.transform.position, bodyA.circleCollider.Radius, bodyB.boxCollider.Verts, bodyA.GetVelocity(),
                         bodyB.GetVelocity(), out normal, out deep, out passedA, out passedB))
                     {
                         CalculateResulotion(bodyA, bodyB, deep, passedA, passedB, normal);
@@ -54,7 +56,7 @@ public class CollisionManager : MonoBehaviour
 
                 else if (bodyA.shapeType == ShapeType.Box && bodyB.shapeType == ShapeType.Circle)
                 {
-                    if (IntersectBoxCircle(bodyB.transform.position, bodyB.circleCollider.Radius, bodyA.boxCollider.verts, bodyA.GetVelocity(),
+                    if (IntersectBoxCircle(bodyB.transform.position, bodyB.circleCollider.Radius, bodyA.boxCollider.Verts, bodyA.GetVelocity(),
                        bodyB.GetVelocity(), out normal, out deep, out passedA, out passedB))
                     {
                         CalculateResulotion(bodyA, bodyB, deep, passedA, passedB, normal);
@@ -65,7 +67,20 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
-    #region Calculators
+    #region Collision Detection Methods
+
+    /// <summary>
+    /// The interaction between two boxes
+    /// </summary>
+    /// <param name="vertsA"></param>
+    /// <param name="vertsB"></param>
+    /// <param name="veloA"></param>
+    /// <param name="veloB"></param>
+    /// <param name="normal"></param>
+    /// <param name="depth"></param>
+    /// <param name="passedA"></param>
+    /// <param name="passedB"></param>
+    /// <returns></returns>
     public static bool IntersectionBoxes(Vector2[] vertsA, Vector2[] vertsB, Vector2 veloA, Vector2 veloB, out Vector2 normal, out float depth,
         out Vector2 passedA, out Vector2 passedB)
     {
@@ -131,6 +146,20 @@ public class CollisionManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// The interaction between two circles
+    /// </summary>
+    /// <param name="centerA"></param>
+    /// <param name="radiusA"></param>
+    /// <param name="veloA"></param>
+    /// <param name="centerB"></param>
+    /// <param name="radiusB"></param>
+    /// <param name="veloB"></param>
+    /// <param name="normal"></param>
+    /// <param name="strength"></param>
+    /// <param name="passedA"></param>
+    /// <param name="passedB"></param>
+    /// <returns></returns>
     public static bool IntersectCircle(Vector2 centerA, float radiusA, Vector2 veloA,
         Vector2 centerB, float radiusB, Vector2 veloB, out Vector2 normal, out float strength, out Vector2 passedA, out Vector2 passedB)
     {
@@ -155,6 +184,19 @@ public class CollisionManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// The interaction between a circle and a box
+    /// </summary>
+    /// <param name="cricleCenter"></param>
+    /// <param name="circleRadius"></param>
+    /// <param name="verts"></param>
+    /// <param name="veloA"></param>
+    /// <param name="veloB"></param>
+    /// <param name="normal"></param>
+    /// <param name="depth"></param>
+    /// <param name="passedA"></param>
+    /// <param name="passedB"></param>
+    /// <returns></returns>
     public static bool IntersectBoxCircle(Vector2 cricleCenter, float circleRadius, Vector2[] verts,
         Vector2 veloA, Vector2 veloB, out Vector2 normal, out float depth, out Vector2 passedA, out Vector2 passedB )
     {
@@ -217,11 +259,23 @@ public class CollisionManager : MonoBehaviour
         return true;
     }
 
-    
+#endregion
+
+    #region Calculators
+
+    /// <summary>
+    /// The resulation of the collision between two bodies, take in account collisions between dynamic, static and trigger
+    /// </summary>
+    /// <param name="bodyA">The first rigidbody (rigidamit)</param>
+    /// <param name="bodyB">The second rigidbody (rigidamit)</param>
+    /// <param name="deep"></param>
+    /// <param name="passedA">The velocity passed from Body B into Body A</param>
+    /// <param name="passedB">The velocity passed from Body A into Body B</param>
+    /// <param name="normal"></param>
     static void CalculateResulotion(RigidAmitComponent bodyA, RigidAmitComponent bodyB, float deep, Vector2 passedA, Vector2 passedB, Vector2 normal)
     {
         Vector2 ApartA,ApartB,NewA,NewB;
-        if (bodyA.isTrigger || bodyB.isTrigger)
+        if (bodyA.isTrigger || bodyB.isTrigger)             // Trigger
         {
             // Create a onTriggerEnterEvent !
             bodyA.TriggerEvent.Invoke(bodyB);
@@ -229,7 +283,7 @@ public class CollisionManager : MonoBehaviour
             return;
         }
 
-        if (bodyA.isStatic && !bodyB.isStatic)
+        if (bodyA.isStatic && !bodyB.isStatic)              // Dynamic and Static interaction
         {
             ApartB = - normal * deep ;
 
@@ -241,7 +295,7 @@ public class CollisionManager : MonoBehaviour
             else { bodyB.AddVelocity(ApartB); }
         }
 
-        if (!bodyA.isStatic && bodyB.isStatic)
+        if (!bodyA.isStatic && bodyB.isStatic)              // Dynamic and static interaction
         {
             ApartA = -normal * deep;
 
@@ -251,7 +305,7 @@ public class CollisionManager : MonoBehaviour
             else { bodyA.AddVelocity(ApartA); }
         }
 
-        else if (!bodyA.isStatic && !bodyB.isStatic)
+        else if (!bodyA.isStatic && !bodyB.isStatic)    // Collision between two dynamic bodies
         {
             ApartA = -normal * deep / 2;
             ApartB = normal * deep / 2;
@@ -275,6 +329,12 @@ public class CollisionManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// The normal created between the collision of a static and dynamic bodies
+    /// </summary>
+    /// <param name="normal"></param>
+    /// <param name="velo"></param>
+    /// <returns></returns>
     static Vector2 StaticInteractoionNormal(Vector2 normal,Vector2 velo)
     {
         Vector2 value = Vector2.zero;

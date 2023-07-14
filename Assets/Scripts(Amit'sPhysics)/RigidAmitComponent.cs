@@ -8,49 +8,47 @@ using UnityEngine.Events;
 
 public class RigidAmitComponent : MonoBehaviour
 {
+    // Public
     public Circle2DAmitCollider circleCollider;
     public Box2DAmitCollider boxCollider;
-    public ShapeType shapeType;
-    public bool isStatic = false;
-    public bool isTrigger = false;
+    
+    public UnityEvent<RigidAmitComponent> TriggerEvent;             // The event that triggers if the rigidbody is taged as trigger
+    
+    public ShapeType shapeType;                                     // The shape type of the body
+    
+    public bool isStatic = false;                                   // Is the body static
+    public bool isTrigger = false;                                  // Is the rigidbody is a trigger
 
-    public UnityEvent<RigidAmitComponent> TriggerEvent;
+    // Serializefield
+    [SerializeField] Vector2 Velocity;                              // the current velocity of the rigidamit component
 
-    // The last location of the rigidamit component in the space
-    Transform transformOnLastUpdate;
+    [SerializeField] float Drag;                                    // User represented drag
 
-    // the current velocity of the rigidamit component
-    [SerializeField] Vector2 Velocity;
+    // Private
+    Transform transformOnLastUpdate;                                // The last location of the rigidamit component in the space
 
-    [SerializeField] float Drag;
-
-    Vector2 calculationsVector;
+    Vector2 calculationsVector;                                     // Vector2 to use in calculation
 
     float calculatedDrag => Drag/100;
 
-    public Vector2 GetVelocity() => Velocity;
 
-    public void AddVelocity(Vector2 velocity)
-    {
-        this.Velocity = velocity;
-    }
-
+    #region Unity Methods
+    
     private void Awake()
     {
         // the inital location of the object
          transformOnLastUpdate = transform;
     }
 
-    // make this much more flexable !
     private void FixedUpdate()
     {
-        if (Mathf.Abs(Velocity.magnitude) <= 0.1f)
+        // This Increase the drag when the velocity magnitued is really low, to fake a non liner change
+        if (Mathf.Abs(Velocity.magnitude) <= 0.1f) 
         {
             calculationsVector = Velocity * (calculatedDrag * 5);
         }
 
-        // This is a thershold that will stop the object from moving if reached
-
+        // The regular velocity calculations
         else
         {
             calculationsVector = Velocity * calculatedDrag;
@@ -59,6 +57,7 @@ public class RigidAmitComponent : MonoBehaviour
         transform.position = transformOnLastUpdate.position + (Vector3)(Velocity - calculationsVector);
         Velocity -= calculationsVector;
 
+        // Stops the object under a certin threshold to fake non liner change in speed 
         if (Mathf.Abs(Velocity.magnitude) <= 0.001f)
         {
             Velocity = Vector2.zero;
@@ -66,12 +65,20 @@ public class RigidAmitComponent : MonoBehaviour
 
         transformOnLastUpdate.position = transform.position;
     }
+    
+    #endregion
 
+    #region Methods
 
-}
+    // Gets the velocity of the object (made it that way to keep the change possible from the inspector)
+    public Vector2 GetVelocity() => Velocity; 
 
-public enum ShapeType
-{
-    Circle,
-    Box
+    // Changes the velocity of the object (made it that way to keep the change possbile from the inspector)
+    public void AddVelocity(Vector2 velocity)
+    {
+        this.Velocity = velocity;
+    }
+    
+    #endregion
+
 }
