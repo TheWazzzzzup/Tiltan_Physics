@@ -25,6 +25,8 @@ public class RigidAmitComponent : MonoBehaviour
     [SerializeField] float Drag;                                    // User represented drag
 
     // Private
+    RigidAmitComponent lastCollision;                               // The latest body this body collided with, (anything but trigger)
+
     Transform transformOnLastUpdate;                                // The last location of the rigidamit component in the space
 
     Vector2 calculationsVector;                                     // Vector2 to use in calculation
@@ -61,6 +63,7 @@ public class RigidAmitComponent : MonoBehaviour
         if (Mathf.Abs(Velocity.magnitude) <= 0.001f)
         {
             Velocity = Vector2.zero;
+            lastCollision = null;
         }
 
         transformOnLastUpdate.position = transform.position;
@@ -79,6 +82,13 @@ public class RigidAmitComponent : MonoBehaviour
         this.Velocity = velocity;
     }
     
+    public RigidAmitComponent GetLastBody() => lastCollision;
+
+    public void SetLastBody(RigidAmitComponent ra)
+    {
+        lastCollision = ra;
+    }
+
     #endregion
 
 }

@@ -285,11 +285,19 @@ public class CollisionManager : MonoBehaviour
 
         if (bodyA.isStatic && !bodyB.isStatic)              // Dynamic and Static interaction
         {
+            if (bodyB.GetLastBody() == bodyA)
+            {
+                return;
+            }
+
+            bodyB.SetLastBody(bodyA);
+
             ApartB = - normal * deep ;
 
-
+            Debug.Log(normal);
+            //Vector2 newVelo = (passedA.magnitude * 0.8f) * -normal;
             Vector2 newVelo = StaticInteractoionNormal(normal, passedA * 0.8f);
-            
+
 
             if (newVelo.magnitude > ApartB.magnitude) bodyB.AddVelocity(newVelo);
             else { bodyB.AddVelocity(ApartB); }
@@ -297,16 +305,29 @@ public class CollisionManager : MonoBehaviour
 
         if (!bodyA.isStatic && bodyB.isStatic)              // Dynamic and static interaction
         {
-            ApartA = -normal * deep;
+            if (bodyA.GetLastBody() == bodyB)
+            {
+                return;
+            }
 
+            bodyA.SetLastBody(bodyB);
+
+            ApartA = - normal * deep;
+
+            Debug.Log(normal);
+            //Vector2 newVelo = (passedB.magnitude * 0.8f) * -normal;
             Vector2 newVelo = StaticInteractoionNormal(normal, passedB * 0.8f);
-            
+
             if (newVelo.magnitude > ApartA.magnitude) bodyA.AddVelocity(newVelo);
             else { bodyA.AddVelocity(ApartA); }
         }
 
         else if (!bodyA.isStatic && !bodyB.isStatic)    // Collision between two dynamic bodies
         {
+            bodyA.SetLastBody(bodyB);
+            bodyB.SetLastBody(bodyA);
+
+
             ApartA = -normal * deep / 2;
             ApartB = normal * deep / 2;
 
@@ -338,6 +359,9 @@ public class CollisionManager : MonoBehaviour
     static Vector2 StaticInteractoionNormal(Vector2 normal,Vector2 velo)
     {
         Vector2 value = Vector2.zero;
+        
+        float min = float.MaxValue;
+        float max = float.MinValue;
 
         if (normal.x > 0f && normal.y > 0f) { Debug.LogWarning($"normal is on an angle in method {nameof(StaticInteractoionNormal)}"); }
 
