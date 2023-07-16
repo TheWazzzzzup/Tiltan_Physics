@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
         currentFilledInfo.text = "Filled: " + ballManager.NumberOfFilled.ToString();
         currentStripeInfo.text = "Stripes: " + ballManager.NumberOfStripes.ToString();
     }
+
+    public void OnStrikerFoul()
+    {
+        turnManager.PassTurn();
+    }
+
 }
 
 public enum GameStage

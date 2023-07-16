@@ -6,9 +6,12 @@ public class BallLogic : MonoBehaviour
 {
     Ball ballIndentity;
 
+    [SerializeField] GameEvent WhitePotted;
+
+    RigidAmitComponent rigidAmit;
     private void Start()
     {
-        RigidAmitComponent rigidAmit = GetComponent<RigidAmitComponent>();
+        rigidAmit = GetComponent<RigidAmitComponent>();
         rigidAmit.TriggerEvent.AddListener(CustomTriggerEnter);
     }
 
@@ -27,11 +30,22 @@ public class BallLogic : MonoBehaviour
 
     void CustomTriggerEnter(RigidAmitComponent ra)
     {
+        
         if (ra.CompareTag("Pot"))
         {
+            if (this.gameObject.CompareTag("White"))
+            {
+                WhitePotted.Raise();
+                rigidAmit.AddVelocity(Vector2.zero);
+                Debug.Log("Potted White");
+                return;
+            }
+
+            rigidAmit.AddVelocity(Vector2.zero);
             ballIndentity.ChangeBallStatus(BallStatus.Potted);
+            ChangeBallStatus();
+            
         }
-        ChangeBallStatus();
         Debug.Log($"{gameObject.name} ball status is {ballIndentity.MyStatus}");
     }
 

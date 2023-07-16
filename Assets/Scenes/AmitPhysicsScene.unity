@@ -202,7 +202,7 @@ MonoBehaviour:
   Size: {x: 23.49694, y: 2.8}
   Offset: {x: -3.375547, y: 0}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &152418666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,12 +217,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 152418665}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &215293208
@@ -679,7 +679,7 @@ MonoBehaviour:
   Size: {x: 23.49643, y: 2.8}
   Offset: {x: -3.357064, y: 0}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &392187886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,12 +694,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 392187885}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &412900195
@@ -750,7 +750,7 @@ MonoBehaviour:
   Size: {x: 2.8, y: 23.99704}
   Offset: {x: 0, y: 2.991417}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &412900198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,12 +765,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 412900197}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &418815804
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &418815807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,12 +834,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 418815806}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &724451143
@@ -890,7 +890,7 @@ MonoBehaviour:
   Size: {x: 23.49643, y: 2.8}
   Offset: {x: -3.357064, y: 0}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &724451146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,12 +905,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 724451145}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &812393344
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 1
+  ValidateRefresh: 0
 --- !u!114 &1072273801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,12 +1315,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1072273800}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &1279596831
@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 1
+  ValidateRefresh: 0
 --- !u!114 &1287165859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1447,12 +1447,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1287165858}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &1362481200
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   Size: {x: 2.8, y: 23.99704}
   Offset: {x: 0, y: 2.991417}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &1362481203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,12 +1518,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 1362481202}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &1422936346
@@ -1791,6 +1791,7 @@ GameObject:
   - component: {fileID: 1559911820}
   - component: {fileID: 1559911821}
   - component: {fileID: 1559911822}
+  - component: {fileID: 1559911823}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1886,6 +1887,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1559911823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559911817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271caf6c2512904980532394fc8b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8e7fe7dea4a04a145845f2f839292923, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1279596832}
+        m_TargetAssemblyTypeName: BallInstancer, Assembly-CSharp
+        m_MethodName: ResetWhite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1637939624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,7 +1963,7 @@ MonoBehaviour:
   Size: {x: 23.49694, y: 2.8}
   Offset: {x: -3.375547, y: 0}
   AutoScale: 0
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &1637939628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1949,12 +1978,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 0}
   boxCollider: {fileID: 1637939627}
-  shapeType: 1
-  isStatic: 1
-  isTrigger: 0
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 1
+  isStatic: 1
+  isTrigger: 0
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1001 &1731502388
@@ -2060,7 +2089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 0
+  ValidateRefresh: 0
 --- !u!114 &1752566370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,12 +2104,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1752566369}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &1809176176
@@ -2129,7 +2158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 1
+  ValidateRefresh: 0
 --- !u!114 &1809176180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,12 +2173,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1809176179}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1 &1815146750
@@ -2266,7 +2295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 1.8
-  validateRefresh: 1
+  ValidateRefresh: 0
 --- !u!114 &1986862877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,12 +2310,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleCollider: {fileID: 1986862876}
   boxCollider: {fileID: 0}
-  shapeType: 0
-  isStatic: 0
-  isTrigger: 1
   TriggerEvent:
     m_PersistentCalls:
       m_Calls: []
+  shapeType: 0
+  isStatic: 0
+  isTrigger: 1
   Velocity: {x: 0, y: 0}
   Drag: 0
 --- !u!1001 &2012844511

@@ -35,6 +35,8 @@ public class BallInstancer : MonoBehaviour
 
 
     GameObject ball;
+    GameObject whiteBallGameObject;
+
 
     BallManager ballManager;                               // * Maybe inherht form ball manager in the furure *
 
@@ -48,10 +50,16 @@ public class BallInstancer : MonoBehaviour
             this.ballManager = ballManager;
 
             ball = Instantiate(whiteBall, whiteStatingTransform);
+            whiteBallGameObject = ball;
             collisionManager.bodies.Add(ball.GetComponent<RigidAmitComponent>());
 
             InstanceBalls();
         }
+    }
+
+    public void ResetWhite()
+    {
+        whiteBallGameObject.transform.position = whiteStatingTransform.position;
     }
 
     void InstanceBalls()
