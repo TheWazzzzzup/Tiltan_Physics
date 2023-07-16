@@ -1,4 +1,5 @@
   using System;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class StickPlacer : MonoBehaviour
@@ -7,6 +8,12 @@ public class StickPlacer : MonoBehaviour
 
     public float pointingTowards { get; private set; }
 
+    [SerializeField] Color Red;
+    [SerializeField] Color Blue;
+    [SerializeField] SpriteRenderer renderer;
+
+    int playTurnIndex = 0;
+
     float magnitued = -3f;
     
     Vector3 lastBallPos;
@@ -14,6 +21,22 @@ public class StickPlacer : MonoBehaviour
     private void Awake()
     {
         CurrentStatus = StickStatus.Statring;
+    }
+
+    public void OnPlayTurn()
+    {
+        if (playTurnIndex == 0)
+        {
+            renderer.color = Red;
+            playTurnIndex++;
+            return;
+        }
+        if (playTurnIndex == 1)
+        {
+            renderer.color = Blue;
+            playTurnIndex = 0;
+            return;
+        }
     }
 
     public void StartingPosition(Vector3 ballPos) {

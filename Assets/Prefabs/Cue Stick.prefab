@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5405911473342920059}
   - component: {fileID: 5405911473342920057}
   - component: {fileID: 8681236881929873478}
+  - component: {fileID: 4147019768733382523}
   m_Layer: 3
   m_Name: Cue Stick
   m_TagString: Untagged
@@ -124,3 +125,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7986bab540c1604e931032335195a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Red: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+  Blue: {r: 0.4009434, g: 0.47324333, b: 1, a: 1}
+  renderer: {fileID: 5405911473342920059}
+--- !u!114 &4147019768733382523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405911473342920060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c271caf6c2512904980532394fc8b149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6deeaf99887dc4b4eb8f4c961ec11d01, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8681236881929873478}
+        m_TargetAssemblyTypeName: StickPlacer, Assembly-CSharp
+        m_MethodName: OnPlayTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     [Header("Game Events")]
     [SerializeField] GameEvent onUpdateUI;
-
     [SerializeField] GameEvent onSuccessfulRack;
     [SerializeField] GameEvent onUnsuccessfulRack;
     
