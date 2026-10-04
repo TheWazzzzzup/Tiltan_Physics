@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class CollisionManager : MonoBehaviour
 {
-    public List <RigidAmitComponent> bodies;        // The List of rigidbodies
+    public List <CustomRigidbody2D> bodies;        // The List of rigidbodies
     
     private const float minimunMagBounce = .1f;     
 
@@ -15,11 +15,11 @@ public class CollisionManager : MonoBehaviour
     {
         for (int i = 0; i < bodies.Count - 1; i++)
         {
-            RigidAmitComponent bodyA = bodies[i];
+            CustomRigidbody2D bodyA = bodies[i];
 
             for (int j = i + 1; j < bodies.Count; j++)
             {
-                RigidAmitComponent bodyB = bodies[j];
+                CustomRigidbody2D bodyB = bodies[j];
                 float deep;
                 Vector2 passedA, passedB, normal;
 
@@ -272,7 +272,7 @@ public class CollisionManager : MonoBehaviour
     /// <param name="passedA">The velocity passed from Body B into Body A</param>
     /// <param name="passedB">The velocity passed from Body A into Body B</param>
     /// <param name="normal"></param>
-    static void CalculateResulotion(RigidAmitComponent bodyA, RigidAmitComponent bodyB, float deep, Vector2 passedA, Vector2 passedB, Vector2 normal)
+    static void CalculateResulotion(CustomRigidbody2D bodyA, CustomRigidbody2D bodyB, float deep, Vector2 passedA, Vector2 passedB, Vector2 normal)
     {
         Vector2 ApartA,ApartB,NewA,NewB;
         if (bodyA.isTrigger || bodyB.isTrigger)             // Trigger

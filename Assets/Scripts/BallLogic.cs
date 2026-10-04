@@ -8,11 +8,11 @@ public class BallLogic : MonoBehaviour
 
     [SerializeField] GameEvent WhitePotted;
 
-    RigidAmitComponent rigidAmit;
+    CustomRigidbody2D rigidBody;
     private void Start()
     {
-        rigidAmit = GetComponent<RigidAmitComponent>();
-        rigidAmit.TriggerEvent.AddListener(CustomTriggerEnter);
+        rigidBody = GetComponent<CustomRigidbody2D>();
+        rigidBody.TriggerEvent.AddListener(CustomTriggerEnter);
     }
 
     public void PassBallIndentity(Ball currentBall)
@@ -28,7 +28,7 @@ public class BallLogic : MonoBehaviour
         }
     }
 
-    void CustomTriggerEnter(RigidAmitComponent ra)
+    void CustomTriggerEnter(CustomRigidbody2D ra)
     {
         
         if (ra.CompareTag("Pot"))
@@ -36,12 +36,12 @@ public class BallLogic : MonoBehaviour
             if (this.gameObject.CompareTag("White"))
             {
                 WhitePotted.Raise();
-                rigidAmit.AddVelocity(Vector2.zero);
+                rigidBody.AddVelocity(Vector2.zero);
                 Debug.Log("Potted White");
                 return;
             }
 
-            rigidAmit.AddVelocity(Vector2.zero);
+            rigidBody.AddVelocity(Vector2.zero);
             ballIndentity.ChangeBallStatus(BallStatus.Potted);
             ChangeBallStatus();
             

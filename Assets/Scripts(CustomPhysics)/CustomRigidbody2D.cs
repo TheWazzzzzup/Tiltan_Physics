@@ -6,13 +6,13 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RigidAmitComponent : MonoBehaviour
+public class CustomRigidbody2D : MonoBehaviour
 {
     // Public
-    public Circle2DAmitCollider circleCollider;
-    public Box2DAmitCollider boxCollider;
+    public CircleCollider2DCustom circleCollider;
+    public BoxCollider2DCustom boxCollider;
     
-    public UnityEvent<RigidAmitComponent> TriggerEvent;             // The event that triggers if the rigidbody is taged as trigger
+    public UnityEvent<CustomRigidbody2D> TriggerEvent;             // The event that triggers if the rigidbody is taged as trigger
     
     public ShapeType shapeType;                                     // The shape type of the body
     
@@ -25,7 +25,7 @@ public class RigidAmitComponent : MonoBehaviour
     [SerializeField] float Drag;                                    // User represented drag
 
     // Private
-    RigidAmitComponent lastCollision;                               // The latest body this body collided with, (anything but trigger)
+    CustomRigidbody2D lastCollision;                               // The latest body this body collided with, (anything but trigger)
 
     Transform transformOnLastUpdate;                                // The last location of the rigidamit component in the space
 
@@ -82,9 +82,9 @@ public class RigidAmitComponent : MonoBehaviour
         this.Velocity = velocity;
     }
     
-    public RigidAmitComponent GetLastBody() => lastCollision;
+    public CustomRigidbody2D GetLastBody() => lastCollision;
 
-    public void SetLastBody(RigidAmitComponent ra)
+    public void SetLastBody(CustomRigidbody2D ra)
     {
         lastCollision = ra;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Box2DAmitCollider : MonoBehaviour
+public class BoxCollider2DCustom : MonoBehaviour
 {
     // Public
     public Vector2[] Verts => UpdateColliderVerts();    // The verts of the box

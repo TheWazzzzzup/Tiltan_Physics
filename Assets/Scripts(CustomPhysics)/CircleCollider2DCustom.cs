@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Circle2DAmitCollider : MonoBehaviour
+public class CircleCollider2DCustom : MonoBehaviour
 {
     public float Radius;                    // The raidus of the object
 

@@ -15,7 +15,7 @@ public class VelocityAddition : MonoBehaviour
 
     // Private
 
-    RigidAmitComponent ra;
+    CustomRigidbody2D ra;
     
     StickPlacer stickPlacer;
 
@@ -33,7 +33,7 @@ public class VelocityAddition : MonoBehaviour
     
     void Start()
     {
-        ra = GetComponent<RigidAmitComponent>();
+        ra = GetComponent<CustomRigidbody2D>();
         StickInit();
     }
 
